@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layout :: htmlhead" th:with="title='生成代码'"></head>
+<body class="layui-layout-body">
+<style>
+    td {
+        margin: 1px;
+        padding: 5px;
+    }
+    *{margin: 0;padding: 0}
+    .wrap{
+        width: 100%;
+        height: 800px;
+        border: 1px solid brown;
+        margin: 20px auto;
+        position: relative;
+    }
+    .nav{
+        width: 100%;
+        height: 30px;
+    }
+    .nav a{
+        width: 250px;
+        height: 50px;
+        text-align: center;
+        font-size: 28px;
+        line-height: 51px;
+        border-right: 1px solid brown;
+        border-bottom: 1px solid brown;
+        float: left;
+        text-decoration: none;
+        color:black;
+    }
+    .active {
+        font-weight:bold;
+    }
+    .sh{
+        width: 100%;
+        height: 747px;
+        position: absolute;
+        left: 0;
+        top:52px;;
+    }
+</style>
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    <div style="margin: 1%">
+        <input type="hidden" id="selectId" name="selectId" th:value="${selectId}">
+        <input type="hidden" id="selectTableNow" name="selectTableNow" th:value="${selectTableNow}">
+        <div style="font-size:20px;font-weight: bold">
+        表名：<span th:text="${selectTableNow}"></span>
+        ，路径：<input type="text" id="selectTableBaseDir" name="selectTableBaseDir" value="com.jc.xx.project">
+        ，是否：
+        <select id="selectMode" name="selectMode" style="width:120px;padding: 1px 1px 5px 3px; margin: 0;">
+            <option value="Normal">普通</option>
+            <option value="WorkFlow">工作流</option>
+        </select>
+        </div>
+        <br>
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 0px;text-align:center">
+                <button class="layui-btn"  lay-submit="" lay-filter="selectTableSubmit" onclick="codeAssemblyFun.save()">&nbsp;生&nbsp;&nbsp;&nbsp;&nbsp;成&nbsp;</button>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="nav">
+                <a id="li1" onclick="selectTab('listQueryTabDiv','li1')" class="active">查询区域</a>
+                <a id="li2" onclick="selectTab('listTabDiv','li2')">列表区域</a>
+                <a id="li3" onclick="selectTab('formTabDiv','li3')">表单区域</a>
+            </div>
+            <div class="sh">
+                <div id="listQueryTabDiv" class="layer_self_wrap" style="width:100%;">
+                    <div id="listQueryDefDiv" class="layer_self_wrap" style="width:100%;overflow-y:auto;height:730px; ">
+
+                    </div>
+                </div>
+                <div id="listTabDiv" class="layer_self_wrap" style="width:100%; display: none">
+                    <div id="listDefDiv" class="layer_self_wrap" style="width:100%;overflow-y:auto;height:730px; ">
+
+                    </div>
+                </div>
+                <div id="formTabDiv" class="layer_self_wrap" style="width:100%; display: none">
+                    <div id="formDefDiv" class="layer_self_wrap" style="width:100%;overflow-y:auto;height:730px; ">
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!--底部-->
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/js/system/codeAssembly.js"></script>
+</div>
+<script>
+    function selectTab (tabName,liName) {
+        $("#listQueryTabDiv").hide();
+        $("#listTabDiv").hide();
+        $("#formTabDiv").hide();
+        $("#"+tabName).show();
+        $("#li1").removeClass("active");
+        $("#li2").removeClass("active");
+        $("#li3").removeClass("active");
+        $("#"+liName).addClass("active");
+    }
+</script>
+</body>
+</html>

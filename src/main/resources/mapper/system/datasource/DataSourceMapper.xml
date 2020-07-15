@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xy.system.codebuilder.dao.DataSourceMapper">
+
+  <update id="updateData"  parameterType="com.xy.system.codebuilder.domain.DataSourceVO">
+    UPDATE busi_data_source
+    <set>
+        <if test="txt != null">
+            txt = #{txt},
+        </if>
+        <if test="dbType != null">
+            db_type = #{dbType},
+        </if>
+        <if test="dbName != null">
+            db_name = #{dbName},
+        </if>
+        <if test="url != null">
+            url = #{url},
+        </if>
+        <if test="username != null">
+            username = #{username},
+        </if>
+        <if test="password != null">
+            password = #{password}
+        </if>
+    </set>
+    WHERE id = #{id}
+  </update>
+
+  <delete id="deleteData" parameterType="com.xy.system.codebuilder.domain.DataSourceVO">
+    delete from  busi_data_source WHERE id = #{id}
+  </delete>
+
+  <insert id="insertData" parameterType="com.xy.system.codebuilder.domain.DataSourceVO">
+    INSERT INTO busi_data_source(id,txt,db_type,url,username,password)
+			VALUES (#{id},#{txt},#{dbType},#{url},#{username},#{password})
+  </insert>
+
+  <select id="findList" resultType="com.xy.system.codebuilder.domain.DataSourceVO"  parameterType="com.xy.system.codebuilder.domain.DataSourceVO">
+    select
+    u.id,
+    u.txt,
+    u.db_type as dbType,
+    u.db_name as dbName,
+    u.url,
+    u.username,
+    u.password
+    FROM busi_data_source as u
+    <where>
+        <if test="id != null and id != '' ">
+          and id  = #{id}
+        </if>
+        <if test="txt != null and txt != '' ">
+          and txt LIKE '%' #{txt} '%'
+        </if>
+        <if test="dbType != null and dbType != '' ">
+          and db_type  = #{dbType}
+        </if>
+        <if test="dbName != null and dbName != '' ">
+          and db_name  = #{dbName}
+        </if>
+        <if test="url != null and url != '' ">
+          and url  = #{url}
+        </if>
+        <if test="username != null and username != '' ">
+          and username  = #{username}
+        </if>
+        <if test="password != null and password != '' ">
+          and password  = #{password}
+        </if>
+    </where>
+  </select>
+    <select id="queryOne" resultType="com.xy.system.codebuilder.domain.DataSourceVO"  parameterType="com.xy.system.codebuilder.domain.DataSourceVO">
+        select
+        u.id,
+        u.txt,
+        u.db_type as dbType,
+        u.db_name as dbName,
+        u.url,
+        u.username,
+        u.password
+        FROM busi_data_source as u
+        <where>
+            <if test="id != null and id != '' ">
+                and id  = #{id}
+            </if>
+            <if test="txt != null and txt != '' ">
+                and txt LIKE '%' #{txt} '%'
+            </if>
+            <if test="dbType != null and dbType != '' ">
+                and db_type  = #{dbType}
+            </if>
+            <if test="dbName != null and dbName != '' ">
+                and db_name  = #{dbName}
+            </if>
+            <if test="url != null and url != '' ">
+                and url  = #{url}
+            </if>
+            <if test="username != null and username != '' ">
+                and username  = #{username}
+            </if>
+            <if test="password != null and password != '' ">
+                and password  = #{password}
+            </if>
+        </where>
+    </select>
+</mapper>

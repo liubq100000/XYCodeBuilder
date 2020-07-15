@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layout :: htmlhead" th:with="title='用户管理'"></head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!--头-->
+    <div th:replace="fragments/head :: header"></div>
+
+    <div style="margin: 1%">
+
+        <!--<hr class="layui-bg-blue"/>
+        <hr class="layui-bg-black"/>-->
+
+        <button class="layui-btn layui-btn-normal" onclick="addDataSource()">新建数据源</button>
+        <table id="dataSourceList" lay-filter="dataSourceTable"></table>
+
+        <script type="text/html" id="optBar">
+             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createTableCode">生成代码</a>
+             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="edit">编辑</a>
+             <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+        </script>
+    </div>
+
+
+    <!--添加或编辑用户-->
+    <div id="saveDataSource" class="layer_self_wrap" style="width:910px;display:none;padding-left:15px;">
+        <form id="dataSourceForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+            <input id="pageNum" type="hidden" name="pageNum"/>
+            <input id="id" type="hidden" name="id"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">名称</label>
+                <div class="layui-input-inline" style="width:80%;">
+                    <input id="txt" name="txt" lay-verify="required" autocomplete="off" class="layui-input" type="text"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">类型</label>
+                <div class="layui-input-inline"  style="width:80%;">
+                    <select name="dbType"  id="dbType" style="width:100%;">
+                        <OPTION VALUE="mysql">mysql</OPTION>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">数据库</label>
+                <div class="layui-input-inline"  style="width:80%;">
+                    <input id="dbName" name="dbName" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">地址</label>
+                <div class="layui-input-inline"  style="width:80%;">
+                    <input id="url" name="url" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-inline"  style="width:80%;">
+                    <input id="username" name="username" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码</label>
+                <div class="layui-input-inline"  style="width:80%;">
+                    <input id="password" name="password" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="margin-left: 0px;text-align:center">
+                    <button class="layui-btn"  lay-submit="" lay-filter="dataSourceSubmit">保 存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!--选择列表-->
+    <div id="selectTable" class="layer_self_wrap" style="width:910px;display:none;padding-left:15px;min-height: 400px;">
+        <form id="selectTableForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
+            <input id="selectId" type="hidden" name="selectId"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择表</label>
+                <div class="layui-input-inline"  style="width:80%;">
+                    <select name="selectTableNow"  id="selectTableNow" style="width:100%;">
+
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="margin-left: 0px;text-align:center">
+                    <button class="layui-btn"  lay-submit="" lay-filter="selectTableSubmit">确 认</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--底部-->
+    <div th:replace="fragments/footer :: footer"></div>
+    <script src="/js/system/dataSourceManage.js"></script>
+
+</div>
+</body>
+</html>

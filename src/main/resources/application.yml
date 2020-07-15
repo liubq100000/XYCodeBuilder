@@ -1,0 +1,47 @@
+server:
+  port: 8102
+
+
+spring:
+  application:
+      name: xydemo
+  datasource:
+    druid:
+      center:
+        jdbcUrl: jdbc:mysql://192.168.0.107:3308/mycenter?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
+        username: root
+        password: root
+        initial-size: 1
+        min-idle: 1
+        max-active: 20
+        test-on-borrow: true
+        driverClassName: com.mysql.jdbc.Driver
+      system:
+        jdbcUrl: jdbc:mysql://192.168.0.107:3308/mysys?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
+        username: root
+        password: root
+        initial-size: 1
+        min-idle: 1
+        max-active: 20
+        test-on-borrow: true
+        driverClassName: com.mysql.jdbc.Driver
+#  thymeleaf:
+#      cache: false
+#      mode: HTML5
+#      encoding: UTF-8
+#      content-type: text/html
+
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
+#模板地址
+ftl:
+  path: F:\xycode\space\XYCodeBuilder\src\main\resources\ftl
+  out: C:\Users\Administrator\Desktop\out
+#设置静态资源路径，多个以逗号分隔
+spring.resources.static-locations: classpath:static/,file:static/
+# pagehelper   
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
