@@ -111,6 +111,7 @@ public class FtlServer {
      */
     public static String build(DataSourceVO nowVO, FtlConfig ftlConfig,
                                String selectTableNow,
+                               String selectProjectName,
                                String selectTableBaseDir,
                                String selectMode,
                                Map<String, PageAttribute> formDataMap,
@@ -125,6 +126,7 @@ public class FtlServer {
         context.put("basePackage", JavaNameUtil.getPackage(selectTableBaseDir));
         context.put("basePath", JavaNameUtil.getPath(selectTableBaseDir));
         context.put("tableName", selectTableNow);
+        context.put("selectProjectName", selectProjectName);
         String[] dirs = selectTableBaseDir.split("\\.");
         String subTableName = selectTableNow;
         int firstSplit = subTableName.indexOf("_");

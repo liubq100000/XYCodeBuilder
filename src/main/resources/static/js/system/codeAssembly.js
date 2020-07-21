@@ -268,13 +268,23 @@ codeAssemblyFun.save = function () {
     console.log(queryData)
     var selectTableNow = $("#selectTableNow").val();
     var selectMode = $("#selectMode").val();
+    var selectProjectName = $("#selectProjectName").val();
     var selectTableBaseDir = $("#selectTableBaseDir").val();
     var selectId = $("#selectId").val();
+    if(selectProjectName == null){
+        layer.alert("请输入项目名称");
+        return ;
+    }
+    if(selectTableBaseDir == null){
+        layer.alert("请输入项目存储地址");
+        return ;
+    }
     $.ajax({
         type: "POST",
         data: {
             "selectId": selectId,
             "selectTableNow": selectTableNow,
+            "selectProjectName": selectProjectName,
             "selectTableBaseDir": selectTableBaseDir,
             "selectMode": selectMode,
             "formData": JSON.stringify(formData),

@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * ${selectProjectName}处理
  * @Version 1.0
  */
 @Controller
@@ -49,7 +50,7 @@ public class ${className}Controller extends BaseController{
 	 */
 	@RequestMapping(value = "save.action",method=RequestMethod.POST)
 	@ResponseBody
-	@ActionLog(operateModelNm="",operateFuncNm="save",operateDescribe="对进行新增操作")
+	@ActionLog(operateModelNm="${selectProjectName}",operateFuncNm="save",operateDescribe="新增操作")
 	public Map<String,Object> save(@Valid ${className} entity, BindingResult result, HttpServletRequest request) throws Exception{
 		Map<String, Object> resultMap = validateBean(result);
 		if (resultMap.size() > 0) {
@@ -75,7 +76,7 @@ public class ${className}Controller extends BaseController{
 	 */
 	@RequestMapping(value="update.action",method=RequestMethod.POST)
 	@ResponseBody
-	@ActionLog(operateModelNm="",operateFuncNm="update",operateDescribe="对进行更新操作")
+	@ActionLog(operateModelNm="${selectProjectName}",operateFuncNm="update",operateDescribe="更新操作")
 	public Map<String, Object> update(${className} entity, BindingResult result, HttpServletRequest request) throws Exception{
 		Map<String, Object> resultMap = validateBean(result);
 		if (resultMap.size() > 0) {
@@ -93,7 +94,6 @@ public class ${className}Controller extends BaseController{
 	 */
 	@RequestMapping(value="get.action",method=RequestMethod.GET)
 	@ResponseBody
-	@ActionLog(operateModelNm="",operateFuncNm="get",operateDescribe="对进行单条查询操作")
 	public ${className} get(${className} entity) throws Exception{
 		return ${className2}Service.get(entity);
 	}
@@ -138,7 +138,6 @@ public class ${className}Controller extends BaseController{
 	* @version  2020-04-10
 	*/
 	@RequestMapping(value="manage.action",method=RequestMethod.GET)
-	@ActionLog(operateModelNm="",operateFuncNm="manage",operateDescribe="对进行跳转操作")
 	public String manage() throws Exception{
 		return "${modulePath}/${minPath}/${className2}List";
 	}
@@ -152,7 +151,7 @@ public class ${className}Controller extends BaseController{
 	 */
 	@RequestMapping(value="deleteByIds.action",method=RequestMethod.POST)
 	@ResponseBody
-	@ActionLog(operateModelNm="",operateFuncNm="deleteByIds",operateDescribe="对进行删除")
+	@ActionLog(operateModelNm="${selectProjectName}",operateFuncNm="deleteByIds",operateDescribe="删除操作")
 	public  Map<String, Object> deleteByIds(${className} entity, String ids) throws Exception{
 		Map<String, Object> resultMap = new HashMap<>(2);
 		entity.setPrimaryKeys(ids.split(","));

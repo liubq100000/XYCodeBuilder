@@ -18,11 +18,11 @@ public class ${className} extends BaseBean {
 	<#list attrs as attr>
 	<#if (attr.busiItemType>0)>
 	<#if attr.typeName?contains("Date")>
-		private ${attr.type} ${attr.camelName};
-		private ${attr.type} ${attr.camelName}Begin;
-		private ${attr.type} ${attr.camelName}End;
+	private ${attr.type} ${attr.camelName};
+	private ${attr.type} ${attr.camelName}Begin;
+	private ${attr.type} ${attr.camelName}End;
 	<#else>
-		private ${attr.type} ${attr.camelName};
+	private ${attr.type} ${attr.camelName};
 	</#if>
 	</#if>
 	</#list>
@@ -31,34 +31,34 @@ public class ${className} extends BaseBean {
 	<#list attrs as attr>
 	<#if (attr.busiItemType>0)>
 	<#if attr.typeName?contains("Date")>
-		public void set${attr.pascalName}Begin(${attr.type} ${attr.camelName}Begin) {
-			this.${attr.camelName}Begin = ${attr.camelName}Begin;
+	public void set${attr.pascalName}Begin(${attr.type} ${attr.camelName}Begin) {
+		this.${attr.camelName}Begin = ${attr.camelName}Begin;
+	}
+	public ${attr.type} get${attr.pascalName}Begin() {
+		return ${attr.camelName}Begin;
+	}
+	public void set${attr.pascalName}End(${attr.type} ${attr.camelName}End) {
+		if(${attr.camelName}End == null){
+			return;
 		}
-		public ${attr.type} get${attr.pascalName}Begin() {
-			return ${attr.camelName}Begin;
-		}
-		public void set${attr.pascalName}End(${attr.type} ${attr.camelName}End) {
-			if(${attr.camelName}End == null){
-				return;
-			}
-			this.${attr.camelName}End = DateUtils.fillTime(${attr.camelName}End);
-		}
-		public ${attr.type} get${attr.pascalName}End() {
-			return ${attr.camelName}End;
-		}
-		public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
-			this.${attr.camelName} = ${attr.camelName};
-		}
-		public ${attr.type} get${attr.pascalName}() {
-			return ${attr.camelName};
-		}
+		this.${attr.camelName}End = DateUtils.fillTime(${attr.camelName}End);
+	}
+	public ${attr.type} get${attr.pascalName}End() {
+		return ${attr.camelName}End;
+	}
+	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
+		this.${attr.camelName} = ${attr.camelName};
+	}
+	public ${attr.type} get${attr.pascalName}() {
+		return ${attr.camelName};
+	}
 	<#else>
-		public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
-			this.${attr.camelName} = ${attr.camelName};
-		}
-		public ${attr.type} get${attr.pascalName}() {
-			return ${attr.camelName};
-		}
+	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
+		this.${attr.camelName} = ${attr.camelName};
+	}
+	public ${attr.type} get${attr.pascalName}() {
+		return ${attr.camelName};
+	}
 	</#if>
 	</#if>
 	</#list>

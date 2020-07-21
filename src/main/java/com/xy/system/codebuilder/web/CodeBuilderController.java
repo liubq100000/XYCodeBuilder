@@ -178,6 +178,7 @@ public class CodeBuilderController {
         result.put("code", 1);
         String selectId = req.getParameter("selectId");
         String selectTableNow = req.getParameter("selectTableNow");
+        String selectProjectName = req.getParameter("selectProjectName");
         String selectTableBaseDir = req.getParameter("selectTableBaseDir");
         String selectMode = req.getParameter("selectMode");
         if (selectTableBaseDir.endsWith(".") || selectTableBaseDir.startsWith(".")) {
@@ -200,7 +201,7 @@ public class CodeBuilderController {
                 return result;
             }
             //生成代码
-            String savePath = FtlServer.build(nowVO, ftlConfig, selectTableNow, selectTableBaseDir, selectMode,formDataMap, listDataMap, queryDataMap);
+            String savePath = FtlServer.build(nowVO, ftlConfig, selectTableNow,selectProjectName, selectTableBaseDir, selectMode,formDataMap, listDataMap, queryDataMap);
             //保存目录
             req.getSession().setAttribute("zipDir", savePath);
         } catch (Exception e) {

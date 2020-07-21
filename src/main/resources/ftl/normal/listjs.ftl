@@ -3,7 +3,6 @@ ${className2}JsList.oTable = null;
 
 ${className2}JsList.oTableFnServerParams = function(aoData){
     getTableParameters(${className2}JsList.oTable, aoData);
-
     <#list queryRowList as queryRowItem>
     <#list queryRowItem.rowList as queryItem>
     <#if (queryItem.flag > 0)>

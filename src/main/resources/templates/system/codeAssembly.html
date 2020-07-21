@@ -47,12 +47,13 @@
     <!--头-->
     <div th:replace="fragments/head :: header"></div>
 
-    <div style="margin: 1%">
+    <div style="margin: 1%;">
         <input type="hidden" id="selectId" name="selectId" th:value="${selectId}">
         <input type="hidden" id="selectTableNow" name="selectTableNow" th:value="${selectTableNow}">
         <div style="font-size:20px;font-weight: bold">
         表名：<span th:text="${selectTableNow}"></span>
-        ，路径：<input type="text" id="selectTableBaseDir" name="selectTableBaseDir" value="com.jc.xx.project">
+        ，功能名称：<input type="text" id="selectProjectName" name="selectProjectName" value="测试功能">
+        ，路径：<input type="text" id="selectTableBaseDir" name="selectTableBaseDir" value="com.jc.xx.project"  >
         ，是否：
         <select id="selectMode" name="selectMode" style="width:120px;padding: 1px 1px 5px 3px; margin: 0;">
             <option value="Normal">普通</option>

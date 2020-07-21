@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<#list attrs as attr>
 		<if test="${attr.camelName} != null">${attr.columnName}=<#noparse>#{</#noparse>${attr.camelName}<#noparse>}</#noparse>,</if>
 		</#list>		
-	   	<#noparse>MODIFY_DATE = #{modifyDateNew} where ID = #{id}</#noparse>
+	   	<#noparse>MODIFY_DATE = #{modifyDateNew} where ID = #{id} and MODIFY_DATE = #{modifyDate}</#noparse>
 	</update>
 
 
@@ -53,7 +53,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and t.${attr.columnName} = <#noparse>#{</#noparse>${attr.camelName}<#noparse>}</#noparse>
 			</if>
 			</#if>
-
 		</#if>
 		</#list>
 		<#noparse>

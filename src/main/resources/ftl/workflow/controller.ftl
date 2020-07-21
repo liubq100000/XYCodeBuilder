@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * ${selectProjectName}处理
  * @Version 1.0
  */
 @Controller
@@ -57,7 +58,7 @@ public class ${className}Controller extends BaseController{
 	 */
 	@RequestMapping(value = "saveWorkflow.action",method=RequestMethod.POST)
 	@ResponseBody
-	@ActionLog(operateModelNm="管理",operateFuncNm="save",operateDescribe="新增操作")
+	@ActionLog(operateModelNm="${selectProjectName}",operateFuncNm="save",operateDescribe="新增操作")
 	public Map<String,Object> saveWorkflow(@Valid ${className} cond,BindingResult result,
 			HttpServletRequest request) throws Exception{
 		
@@ -101,7 +102,7 @@ public class ${className}Controller extends BaseController{
 	*/
 	@RequestMapping(value="updateWorkflow.action",method=RequestMethod.POST)
 	@ResponseBody
-	@ActionLog(operateModelNm="管理",operateFuncNm="update",operateDescribe="更新操作")
+	@ActionLog(operateModelNm="${selectProjectName}",operateFuncNm="update",operateDescribe="更新操作")
 	public Map<String, Object> updateWorkflow(${className} cond, BindingResult result,
 			HttpServletRequest request) throws Exception{
 		Map<String, Object> resultMap = validateBean(result);
@@ -152,7 +153,6 @@ public class ${className}Controller extends BaseController{
 	 */
 	@RequestMapping(value="loadWorkflow.action",method=RequestMethod.GET)
 	public String loadWorkflow(${className} cond,Model model,HttpServletRequest request) throws Exception{
-		
 		${className} cond_temp = new ${className}();
 		cond_temp.setPiId(cond.getWorkflowBean().getBusiness_Key_());
 		cond_temp = ${className2}Service.get(cond_temp);
@@ -173,7 +173,6 @@ public class ${className}Controller extends BaseController{
 	* @version  2020-07-09 
 	*/
 	@RequestMapping(value="manage.action",method=RequestMethod.GET)
-	@ActionLog(operateModelNm="项目",operateFuncNm="manage",operateDescribe="跳转")
 	public String manage(Model model,HttpServletRequest request) throws Exception{
 		menuUtil.saveMenuID("/${modulePath}/${minPath}/manage.action",request);
 		fillPageInfo(model, request);
@@ -208,7 +207,6 @@ public class ${className}Controller extends BaseController{
 	* @version  2020-07-09 
 	*/
 	@RequestMapping(value="todoList.action",method=RequestMethod.GET)
-	@ActionLog(operateModelNm="管理",operateFuncNm="manageForApplyList",operateDescribe="跳转工作")
 	public String todoList(Model model,HttpServletRequest request) throws Exception{
 		menuUtil.saveMenuID("/${modulePath}/${minPath}/todoList.action",request);
 		fillPageInfo(model, request);
@@ -249,7 +247,6 @@ public class ${className}Controller extends BaseController{
 	* @version  2020-07-09 
 	*/
 	@RequestMapping(value="doneList.action",method=RequestMethod.GET)
-	@ActionLog(operateModelNm="管理",operateFuncNm="condSearch",operateDescribe="跳转工作")
 	public String doneList(Model model,HttpServletRequest request) throws Exception{
 		menuUtil.saveMenuID("/${modulePath}/${minPath}/doneList.action",request);
 		fillPageInfo(model, request);
@@ -290,7 +287,6 @@ public class ${className}Controller extends BaseController{
 	* @version  2020-07-09 
 	*/
 	@RequestMapping(value="myList.action",method=RequestMethod.GET)
-	@ActionLog(operateModelNm="管理",operateFuncNm="condMyList",operateDescribe="跳转工作")
 	public String myList(Model model,HttpServletRequest request) throws Exception{
 		menuUtil.saveMenuID("/${modulePath}/${minPath}/myList.action",request);
 		fillPageInfo(model, request);

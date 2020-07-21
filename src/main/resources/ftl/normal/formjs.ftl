@@ -1,13 +1,6 @@
 var ${className2}JsForm = {};
 
-/**
- * 初始化
- * @param config {
- *     title： 标题
- *     operator： 操作 add/modify
- *     id: 修改时的主键id
- * }
- */
+//初始化
 ${className2}JsForm.init = function(config) {
     <#noparse>$('#entityFormTitle').html(config.title)</#noparse>;
     <#noparse>$("#entityForm #id").val('');</#noparse>
@@ -15,18 +8,14 @@ ${className2}JsForm.init = function(config) {
         ${className2}JsForm.operatorModal('show');
     } else if (config.operator == 'modify') {
         $.ajax({
-            type : "GET", data : {id: config.id}, dataType : "json",
+            type : "GET", 
+	        data : {id: config.id},
+	        dataType : "json",
             url : getRootPath() + "/${modulePath}/${minPath}/get.action",
             success : function(data) {
                 if (data) {
                     hideErrorMessage();
                     <#noparse>$("#entityForm").fill(data);</#noparse>
-                    var companyType = ',' + data.companyType + ',';
-                    $("[name='companyTypeCheckbox']").each(function () {
-                        if (companyType.indexOf(',' + $(this).val() + ',') > -1) {
-                            this.checked = true;
-                        }
-                    });
                     ${className2}JsForm.operatorModal('show');
                 }
             }
@@ -34,10 +23,7 @@ ${className2}JsForm.init = function(config) {
     }
 };
 
-/**
- * 验证表单
- * @returns {boolean}
- */
+//验证表单
 ${className2}JsForm.formValidate = function() {
     <#noparse>if (!$("#entityForm").valid()) {
         return false;
@@ -45,9 +31,7 @@ ${className2}JsForm.formValidate = function() {
     return true;
 };
 
-/**
- * 保存或修改方法
- */
+//保存或修改方法
 ${className2}JsForm.saveOrModify = function () {
 	if (${className2}JsForm.subState) {
 	    return;
@@ -59,7 +43,10 @@ ${className2}JsForm.saveOrModify = function () {
     }
 	var url = getRootPath() + "/${modulePath}/${minPath}/" + <#noparse> ($("#id").val() != '' ? 'update' : 'save') + '.action';</#noparse> 
     jQuery.ajax({
-        url : url, type : 'POST', cache: false, data : <#noparse> $("#entityForm").serializeArray(),</#noparse> 
+        url : url, 
+        type : 'POST',
+        cache: false,
+        data : <#noparse> $("#entityForm").serializeArray(),</#noparse>
         success : function(data) {
             ${className2}JsForm.subState = false;
             <#noparse> $("#token").val(data.token);</#noparse> 
@@ -82,10 +69,7 @@ ${className2}JsForm.saveOrModify = function () {
     });
 };
 
-/**
- * 操作窗口开关
- * @param operator
- */
+//操作窗口开关
 ${className2}JsForm.operatorModal = function (operator) {
     <#noparse> $('#form-modal').modal(operator);</#noparse> 
 };
@@ -97,9 +81,7 @@ $(document).ready(function(){
     <#noparse> $('#closeBtn')</#noparse> .click(function () { ${className2}JsForm.operatorModal('hide'); });
 });
 
-/**
- * jquery.validate
- */
+//jquery.validate
 <#noparse> $("#entityForm").validate({</#noparse> 
 	ignore:'ignore',
 	rules: {
