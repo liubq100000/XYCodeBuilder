@@ -164,7 +164,7 @@ public class FtlServer {
         List<Attribute> attrList = MetadataUtil.getTableColumnsInfo(nowVO, selectTableNow);
         PageAttribute queryItem;
         for (Attribute att : attrList) {
-            queryItem = queryAttMap.get(att.getCamelName());
+            queryItem = queryDataMap.get(att.getCamelName());
             if (queryItem != null && "Y".equalsIgnoreCase(queryItem.getQuery())) {
                 att.setQueryByLike(2);
             }

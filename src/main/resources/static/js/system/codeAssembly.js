@@ -19,6 +19,7 @@ codeAssemblyFun.init = function () {
             if (data.code == '000000') {
                 codeAssemblyFun.resMap = data;
                 codeAssemblyFun.initPage();
+                codeAssemblyFun.initSort();
             } else {
                 codeAssemblyFun.initSuccess = false;
                 alert(data.message)
@@ -26,6 +27,45 @@ codeAssemblyFun.init = function () {
         }
     });
 }
+codeAssemblyFun.initSort = function () {
+    var trObj1 = Sortable.create(document.getElementById('queryTableXX'), {
+        animation: 150,
+        store: {//缓存到localStorage
+            get: function(sortable) {
+
+            },
+            set: function(sortable) {
+
+            }
+        }
+    });
+    var trObj2 = Sortable.create(document.getElementById('listTableXX'), {
+        animation: 150,
+        store: {//缓存到localStorage
+            get: function(sortable) {
+
+            },
+            set: function(sortable) {
+
+            }
+        }
+    });
+    var trObj3 = Sortable.create(document.getElementById('formTableXX'), {
+        animation: 150,
+        store: {//缓存到localStorage
+            get: function(sortable) {
+
+            },
+            set: function(sortable) {
+
+            }
+        }
+    });
+}
+
+
+
+
 //初始化页面
 codeAssemblyFun.initPage = function () {
     codeAssemblyFun.initQueryPage();
@@ -36,13 +76,16 @@ codeAssemblyFun.initPage = function () {
 codeAssemblyFun.initQueryPage = function () {
     $("#listQueryDefDiv").html("");
     var h = "<table style='width:100%;' border='1px'>";
+    h += "<thead>";
     h += "<tr>";
     h += "<td style='width:150px;' align='center'>名称</td>";
     h += "<td style='width:150px;' align='center'>类型</td>";
     h += "<td style='width:150px;' align='center'>查询显示</td>";
     h += "<td style='width:150px;' align='center'>模糊</td>";
-    h += "<td align='center'>排序</td>";
+    h += "<td align='center'></td>";
     h += "</tr>";
+    h += "</thead>";
+    h += "<tbody  id='queryTableXX'>";
     var attList = codeAssemblyFun.resMap.attList;
     var item;
     for (var index = 0; index < attList.length; index++) {
@@ -80,10 +123,11 @@ codeAssemblyFun.initQueryPage = function () {
         if (item.sort) {
             sort = item.sort;
         }
-        h += "<input type='text' id='query_sort_" + item.camelName + "'  name='query_sort_" + item.camelName + "' value='" + sort + "'>";
+        h += "<input type='hidden' id='query_sort_" + item.camelName + "'  name='query_sort_" + item.camelName + "' value='" + sort + "'>";
         h += "</td>";
         h += "</tr>";
     }
+    h += "</tbody>";
     h += "</table>";
     $("#listQueryDefDiv").html(h);
 }
@@ -92,12 +136,15 @@ codeAssemblyFun.initQueryPage = function () {
 codeAssemblyFun.initListPage = function () {
     $("#listDefDiv").html("");
     var h = "<table style='width:100%;' border='1px'>";
+    h += "<thead>";
     h += "<tr>";
     h += "<td style='width:150px;' align='center'>名称</td>";
     h += "<td style='width:150px;' align='center'>类型</td>";
     h += "<td style='width:150px;' align='center'>列表显示</td>";
-    h += "<td align='center'>排序</td>";
+    h += "<td align='center'></td>";
     h += "</tr>";
+    h += "</thead>";
+    h += "<tbody  id='listTableXX'>";
     var attList = codeAssemblyFun.resMap.attList;
     var item;
     for (var index = 0; index < attList.length; index++) {
@@ -134,10 +181,11 @@ codeAssemblyFun.initListPage = function () {
         if (item.sort) {
             sort = item.sort;
         }
-        h += "<input type='text'  id='list_sort_" + item.camelName + "' name='list_sort_" + item.camelName + "' value='" + sort + "'>";
+        h += "<input type='hidden'  id='list_sort_" + item.camelName + "' name='list_sort_" + item.camelName + "' value='" + sort + "'>";
         h += "</td>";
         h += "</tr>";
     }
+    h += "</tbody>";
     h += "</table>";
     $("#listDefDiv").html(h);
 }
@@ -146,14 +194,17 @@ codeAssemblyFun.initListPage = function () {
 codeAssemblyFun.initFormPage = function () {
     $("#formDefDiv").html("");
     var h = "<table style='width:100%;' border='1px'>";
+    h += "<thead>";
     h += "<tr>";
     h += "<td style='width:150px;' align='center'>名称</td>";
     h += "<td style='width:150px;' align='center'>类型</td>";
     h += "<td style='width:150px;' align='center'>表单显示</td>";
     h += "<td style='width:150px;' align='center'>列宽</td>";
     h += "<td style='width:150px;' align='center'>列高</td>";
-    h += "<td align='center'>排序</td>";
+    h += "<td align='center'></td>";
     h += "</tr>";
+    h += "</thead>";
+    h += "<tbody  id='formTableXX'>";
     var attList = codeAssemblyFun.resMap.attList;
     var item;
     for (var index = 0; index < attList.length; index++) {
@@ -199,15 +250,17 @@ codeAssemblyFun.initFormPage = function () {
         if (item.sort) {
             sort = item.sort;
         }
-        h += "<input type='text' id='form_sort_" + item.camelName + "' name='form_sort_" + item.camelName + "'  value='" + sort + "'>";
+        h += "<input type='hidden' id='form_sort_" + item.camelName + "' name='form_sort_" + item.camelName + "'  value='" + sort + "'>";
         h += "</td>";
         h += "</tr>";
     }
+    h += "</tbody>";
     h += "</table>";
     $("#formDefDiv").html(h);
 }
 codeAssemblyFun.save = function () {
     var formData = [];
+    var sortNow = 0;
     $("[name^='form_code_']").each(function (itemIndex, itemObj) {
         var camelName = $(itemObj).val();
         var displayValue = $("#form_display_" + camelName).val();
@@ -215,7 +268,6 @@ codeAssemblyFun.save = function () {
         var heightValue = $("#form_height_" + camelName).val();
         var typeValue = $("#form_type_" + camelName).val();
         var labelValue = $("#form_label_" + camelName).val();
-        var sortValue = $("#form_sort_" + camelName).val();
         var itemData = {
             "name": codeAssemblyFun.nvl(camelName),
             "display": codeAssemblyFun.nvl(displayValue),
@@ -223,45 +275,46 @@ codeAssemblyFun.save = function () {
             "height": codeAssemblyFun.nvl(heightValue),
             "type": codeAssemblyFun.nvl(typeValue),
             "label": codeAssemblyFun.nvl(labelValue),
-            "sort": codeAssemblyFun.nvl(sortValue)
+            "sort": sortNow++
         };
         formData[formData.length] = itemData;
     })
     console.log(formData)
 
     var listData = [];
+    sortNow = 0;
     $("[name^='list_code_']").each(function (itemIndex, itemObj) {
         var camelName = $(itemObj).val();
         var displayValue = $("#list_display_" + camelName).val();
         var typeValue = $("#list_type_" + camelName).val();
         var labelValue = $("#list_label_" + camelName).val();
-        var sortValue = $("#list_sort_" + camelName).val();
         var itemData = {
             "name": codeAssemblyFun.nvl(camelName),
             "display": codeAssemblyFun.nvl(displayValue),
             "type": codeAssemblyFun.nvl(typeValue),
             "label": codeAssemblyFun.nvl(labelValue),
-            "sort": codeAssemblyFun.nvl(sortValue)
+            "sort": sortNow++
         };
         listData[listData.length] = itemData;
     })
     console.log(listData)
 
     var queryData = [];
+    sortNow = 0;
     $("[name^='query_code_']").each(function (itemIndex, itemObj) {
+
         var camelName = $(itemObj).val();
         var displayValue = $("#query_display_" + camelName).val();
         var queryValue = $("#query_search_" + camelName).val();
         var typeValue = $("#query_type_" + camelName).val();
         var labelValue = $("#query_label_" + camelName).val();
-        var sortValue = $("#query_sort_" + camelName).val();
         var itemData = {
             "name": codeAssemblyFun.nvl(camelName),
             "display": codeAssemblyFun.nvl(displayValue),
             "query": codeAssemblyFun.nvl(queryValue),
             "type": codeAssemblyFun.nvl(typeValue),
             "label": codeAssemblyFun.nvl(labelValue),
-            "sort": codeAssemblyFun.nvl(sortValue)
+            "sort": sortNow++
         };
         queryData[queryData.length] = itemData;
     })
