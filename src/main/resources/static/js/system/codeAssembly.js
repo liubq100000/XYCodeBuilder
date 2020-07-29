@@ -390,7 +390,7 @@ codeAssemblyFun.save = function () {
         },
         url: "/code/build?n_=" + (new Date().getTime()),
         success: function (data) {
-            //window.location.href = "/code/down";
+            window.location.href = "/code/down";
             layer.alert("生成成功");
         }
     });
