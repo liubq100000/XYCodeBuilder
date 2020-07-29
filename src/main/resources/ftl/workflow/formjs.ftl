@@ -101,6 +101,26 @@ ${className2}JsForm.gotoTodo = function(){
     JCFF.loadPage({url:"/${modulePath}/${minPath}/todoList.action"});
 }
 
+<#list formRowList as formRowItem>
+<#list formRowItem.rowList as formItem>
+<#if formItem.disType?contains("DeptSelect")>
+${formItem.name}FormTree = JCTree.init({
+    container: "${formItem.name}FormDiv",
+    controlId: "${formItem.name}FormDiv-${formItem.name}",
+    isCheckOrRadio:false,
+    isPersonOrOrg:false
+});
+<#elseif formItem.disType?contains("UserSelect")>
+${formItem.name}FormTree = JCTree.init({
+    container: "${formItem.name}FormDiv",
+    controlId: "${formItem.name}FormDiv-${formItem.name}",
+    isCheckOrRadio:false,
+    isPersonOrOrg:true
+});
+</#if>
+</#list>
+</#list>
+
 $(document).ready(function(){
     ie8StylePatch();
 
@@ -114,6 +134,19 @@ $(document).ready(function(){
     if(businessJson.length>0){
     var businessObj = eval("("+businessJson+")");
         $("#entityForm").fill(businessObj);
+        <#list formRowList as formRowItem>
+        <#list formRowItem.rowList as formItem>
+        <#if formItem.disType?contains("DeptSelect")>
+        if (businessObj.${formItem.name} && businessObj.${formItem.name}Value) {
+            ${formItem.name}FormTree.setData(businessObj.${formItem.name}Value[0]);
+        }
+        <#elseif formItem.disType?contains("UserSelect")>
+        if (businessObj.${formItem.name} && businessObj.${formItem.name}Value) {
+            ${formItem.name}FormTree.setData(businessObj.${formItem.name}Value[0]);
+        }
+        </#if>
+        </#list>
+        </#list>
     }
     formPriv.doForm();
 });

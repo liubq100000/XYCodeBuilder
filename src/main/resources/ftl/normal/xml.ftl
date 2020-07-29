@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<#else>
 			<#if (attr.queryByLike > 0)>
 			<if test="${attr.camelName} != null">
-				and t.${attr.columnName} = concat('%',<#noparse>#{</#noparse>${attr.camelName}<#noparse>}</#noparse>,'%')
+				and t.${attr.columnName} like concat('%',<#noparse>#{</#noparse>${attr.camelName}<#noparse>}</#noparse>,'%')
 			</if>
 			<#else>
 			<if test="${attr.camelName} != null">

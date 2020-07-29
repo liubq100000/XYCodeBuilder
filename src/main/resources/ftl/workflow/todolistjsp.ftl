@@ -25,6 +25,12 @@
 								<div class="input-group-btn w30">-</div>
 								<input class="datepicker-input" type="text" id="query_${queryItem.name}End" name="query_${queryItem.name}End" data-pick-time="false" data-date-format="yyyy-MM-dd" data-ref-obj="<#noparse>#</#noparse>query_${queryItem.name}Begin gt">
 								</div>
+								<#elseif queryItem.disType?contains("Dic")>
+								<dic:select  id="query_${queryItem.name}"  name="query_${queryItem.name}" dictName="${queryItem.dicCode}" parentCode="${queryItem.dicParentCode}" defaultValue=""  headName="-全部-" headValue=""/>
+								<#elseif queryItem.disType?contains("DeptSelect")>
+								<div id="${queryItem.name}SearchDiv">
+								<#elseif queryItem.disType?contains("UserSelect")>
+								<div id="${queryItem.name}SearchDiv">
 								<#else>
 								<input type="text" id="query_${queryItem.name}" name="query_${queryItem.name}"/>
 								</#if>

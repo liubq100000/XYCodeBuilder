@@ -1,9 +1,15 @@
 package ${packageName};
 
 import com.jc.foundation.domain.BaseBean;
+import java.util.List;
+import java.util.Map;
 import java.util.Date;
 import java.math.BigDecimal;
 import com.jc.foundation.util.DateUtils;
+import com.jc.foundation.util.SpringContextHolder;
+import com.jc.system.security.SystemSecurityUtils;
+import com.jc.system.dic.IDicManager;
+import com.jc.system.dic.domain.Dic;
 import com.jc.workflow.external.WorkflowBean;
 /**
  * @author lc 
@@ -56,6 +62,47 @@ public class ${className} extends BaseBean {
 	}
 	public ${attr.type} get${attr.pascalName}() {
 		return ${attr.camelName};
+	}
+	<#elseif attr.disType?contains("Dic")>
+	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
+		this.${attr.camelName} = ${attr.camelName};
+	}
+	public ${attr.type} get${attr.pascalName}() {
+		return ${attr.camelName};
+	}
+	public ${attr.type} get${attr.pascalName}Value() {
+		if(${attr.camelName} == null){
+			return null;
+		}
+		IDicManager dicManager = SpringContextHolder.getBean(IDicManager.class);
+		Dic dic = dicManager.getDic("${attr.dicCode}","${attr.dicParentCode}", this.${attr.camelName});
+		return dic == null ? "" : dic.getValue();
+	}
+	<#elseif attr.disType?contains("DeptSelect")>
+	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
+		this.${attr.camelName} = ${attr.camelName};
+	}
+	public ${attr.type} get${attr.pascalName}() {
+		return ${attr.camelName};
+	}
+	public List<Map<String, String>> get${attr.pascalName}Value() {
+		if(${attr.camelName} == null){
+			return null;
+		}
+		return SystemSecurityUtils.getDeptByDeptIdsToSelectControl(${attr.camelName});
+	}
+	<#elseif attr.disType?contains("UserSelect")>
+	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
+		this.${attr.camelName} = ${attr.camelName};
+	}
+	public ${attr.type} get${attr.pascalName}() {
+		return ${attr.camelName};
+	}
+	public List<Map<String, String>> get${attr.pascalName}Value() {
+		if(${attr.camelName} == null){
+			return null;
+		}
+		return SystemSecurityUtils.getUsersByUserIdsToSelectControl(${attr.camelName});
 	}
 	<#else>
 	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {

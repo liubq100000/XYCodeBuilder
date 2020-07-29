@@ -5,6 +5,28 @@ ${className2}JsTodoList.subState = false;
 //分页对象
 ${className2}JsTodoList.oTable = null;
 
+<#list queryRowList as queryRowItem>
+<#list queryRowItem.rowList as queryItem>
+<#if (queryItem.flag > 0)>
+<#if queryItem.disType?contains("DeptSelect")>
+${queryItem.name}SearchTree = JCTree.init({
+    container: "${queryItem.name}SearchDiv",
+    controlId: "${queryItem.name}SearchDiv-${queryItem.name}",
+    isCheckOrRadio:false,
+    isPersonOrOrg:false
+});
+<#elseif queryItem.disType?contains("UserSelect")>
+${queryItem.name}SearchTree = JCTree.init({
+    container: "${queryItem.name}SearchDiv",
+    controlId: "${queryItem.name}SearchDiv-${queryItem.name}",
+    isCheckOrRadio:false,
+    isPersonOrOrg:true
+});
+</#if>
+</#if>
+</#list>
+</#list>
+
 ${className2}JsTodoList.oTableFnServerParams = function(aoData){
     getTableParameters(${className2}JsTodoList.oTable, aoData);
 
@@ -13,12 +35,18 @@ ${className2}JsTodoList.oTableFnServerParams = function(aoData){
     <#if (queryItem.flag > 0)>
     <#if queryItem.type?contains("Date")>
     var ${queryItem.name}CondObjBegin  <#noparse>= $('#searchForm #</#noparse>query_${queryItem.name}Begin').val();
-    if (${queryItem.name}CondObjBegin.length > 0) { aoData.push({"name": "${queryItem.name}Begin", "value": ${queryItem.name}CondObjBegin}); }
+    if (${queryItem.name}CondObjBegin && ${queryItem.name}CondObjBegin.length > 0) { aoData.push({"name": "${queryItem.name}Begin", "value": ${queryItem.name}CondObjBegin}); }
     var ${queryItem.name}CondObjEnd  <#noparse>= $('#searchForm #</#noparse>query_${queryItem.name}End').val();
-    if (${queryItem.name}CondObjEnd.length > 0) { aoData.push({"name": "${queryItem.name}End", "value": ${queryItem.name}CondObjEnd}); }
+    if (${queryItem.name}CondObjEnd && ${queryItem.name}CondObjEnd.length > 0) { aoData.push({"name": "${queryItem.name}End", "value": ${queryItem.name}CondObjEnd}); }
+    <#elseif queryItem.disType?contains("DeptSelect")>
+    var ${queryItem.name}CondObj  <#noparse>= $('#searchForm #</#noparse>${queryItem.name}SearchDiv-${queryItem.name}').val();
+    if (${queryItem.name}CondObj && ${queryItem.name}CondObj.length > 0) { aoData.push({"name": "${queryItem.name}", "value": ${queryItem.name}CondObj}); }
+    <#elseif queryItem.disType?contains("UserSelect")>
+    var ${queryItem.name}CondObj  <#noparse>= $('#searchForm #</#noparse>${queryItem.name}SearchDiv-${queryItem.name}').val();
+    if (${queryItem.name}CondObj && ${queryItem.name}CondObj.length > 0) { aoData.push({"name": "${queryItem.name}", "value": ${queryItem.name}CondObj}); }
     <#else>
     var ${queryItem.name}CondObj  <#noparse>= $('#searchForm #</#noparse>query_${queryItem.name}').val();
-    if (${queryItem.name}CondObj.length > 0) { aoData.push({"name": "${queryItem.name}", "value": ${queryItem.name}CondObj}); }
+    if (${queryItem.name}CondObj && ${queryItem.name}CondObj.length > 0) { aoData.push({"name": "${queryItem.name}", "value": ${queryItem.name}CondObj}); }
     </#if>
     </#if>
     </#list>
@@ -64,6 +92,15 @@ ${className2}JsTodoList.renderTable = function () {
 
 ${className2}JsTodoList.queryReset = function(){
     <#noparse>$('#searchForm')</#noparse>[0].reset();
+    <#list queryRowList as queryRowItem>
+    <#list queryRowItem.rowList as queryItem>
+    <#if queryItem.disType?contains("DeptSelect")>
+    ${queryItem.name}SearchTree.clearValue();
+    <#elseif queryItem.disType?contains("UserSelect")>
+    ${queryItem.name}SearchTree.clearValue();
+    </#if>
+    </#list>
+    </#list>
 };
 
 
