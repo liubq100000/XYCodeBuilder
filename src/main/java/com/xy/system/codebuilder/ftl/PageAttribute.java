@@ -12,6 +12,9 @@ public class PageAttribute {
     private String height = "";
     private String sort = "";
     private String query = "";
+    private String disType = "";
+    private String dicCode = "";
+    private String dicParentCode = "";
 
     public int getFlag() {
         if (name != null && name.trim().length() > 0) {
@@ -107,5 +110,29 @@ public class PageAttribute {
 
     public void setQuery(String query) {
         this.query = query;
+    }
+
+    public String getDisType() {
+        return disType;
+    }
+
+    public void setDisType(String disType) {
+        this.disType = disType;
+    }
+
+    public String getDicCode() {
+        return dicCode;
+    }
+
+    public void setDicCode(String dicCode) {
+        this.dicCode = dicCode;
+    }
+
+    public String getDicParentCode() {
+        return dicParentCode;
+    }
+
+    public void setDicParentCode(String dicParentCode) {
+        this.dicParentCode = dicParentCode;
     }
 }

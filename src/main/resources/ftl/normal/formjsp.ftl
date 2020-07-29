@@ -22,6 +22,12 @@
 							<td colspan="${formItem.colspanSize}">
 								<#if formItem.type?contains("Date")>
 								<input class="datepicker-input" type="text" id="${formItem.name}" name="${formItem.name}" data-pick-time="false" data-date-format="yyyy-MM-dd">
+								<#elseif formItem.disType?contains("Dic")>
+								<dic:select name="${formItem.name}" id="${formItem.name}"   dictName="${formItem.dicCode}" parentCode="${formItem.dicParentCode}" defaultValue=""  headName="-请选择-" headValue=""/>
+								<#elseif formItem.disType?contains("DeptSelect")>
+								<div id="${formItem.name}FormDiv">
+								<#elseif formItem.disType?contains("UserSelect")>
+								<div id="${formItem.name}FormDiv">
 								<#else>
 								<input type="text" id="${formItem.name}" name="${formItem.name}"/>
 								</#if>
@@ -30,6 +36,12 @@
 							<td>
 								<#if formItem.type?contains("Date")>
 								<input class="datepicker-input" type="text" id="${formItem.name}" name="${formItem.name}" data-pick-time="false" data-date-format="yyyy-MM-dd">
+								<#elseif formItem.disType?contains("Dic")>
+								<dic:select name="${formItem.name}" id="${formItem.name}"   dictName="${formItem.dicCode}" parentCode="${formItem.dicParentCode}" defaultValue=""  headName="-请选择-" headValue=""/>
+								<#elseif formItem.disType?contains("DeptSelect")>
+								<div id="${formItem.name}FormDiv">
+								<#elseif formItem.disType?contains("UserSelect")>
+								<div id="${formItem.name}FormDiv">
 								<#else>
 								<input type="text" id="${formItem.name}" name="${formItem.name}"/>
 								</#if>

@@ -156,8 +156,7 @@ public class BaseAdminRole  implements java.io.Serializable{
     }
 
     /**
-     * 获取1：有效 
-            0：无效
+     * 获取1：有效  0：无效
      *
      * @return role_status - 1：有效 
             0：无效
@@ -167,11 +166,9 @@ public class BaseAdminRole  implements java.io.Serializable{
     }
 
     /**
-     * 设置1：有效 
-            0：无效
+     * 设置1：有效 0：无效
      *
-     * @param roleStatus 1：有效 
-            0：无效
+     * @param roleStatus 1：有效  0：无效
      */
     public void setRoleStatus(Integer roleStatus) {
         this.roleStatus = roleStatus;

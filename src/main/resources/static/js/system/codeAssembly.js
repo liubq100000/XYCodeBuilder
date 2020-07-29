@@ -31,10 +31,10 @@ codeAssemblyFun.initSort = function () {
     var trObj1 = Sortable.create(document.getElementById('queryTableXX'), {
         animation: 150,
         store: {//缓存到localStorage
-            get: function(sortable) {
+            get: function (sortable) {
 
             },
-            set: function(sortable) {
+            set: function (sortable) {
 
             }
         }
@@ -42,10 +42,10 @@ codeAssemblyFun.initSort = function () {
     var trObj2 = Sortable.create(document.getElementById('listTableXX'), {
         animation: 150,
         store: {//缓存到localStorage
-            get: function(sortable) {
+            get: function (sortable) {
 
             },
-            set: function(sortable) {
+            set: function (sortable) {
 
             }
         }
@@ -53,17 +53,15 @@ codeAssemblyFun.initSort = function () {
     var trObj3 = Sortable.create(document.getElementById('formTableXX'), {
         animation: 150,
         store: {//缓存到localStorage
-            get: function(sortable) {
+            get: function (sortable) {
 
             },
-            set: function(sortable) {
+            set: function (sortable) {
 
             }
         }
     });
 }
-
-
 
 
 //初始化页面
@@ -82,7 +80,7 @@ codeAssemblyFun.initQueryPage = function () {
     h += "<td style='width:150px;' align='center'>类型</td>";
     h += "<td style='width:150px;' align='center'>查询显示</td>";
     h += "<td style='width:150px;' align='center'>模糊</td>";
-    h += "<td align='center'></td>";
+    h += "<td align='center'>排序</td>";
     h += "</tr>";
     h += "</thead>";
     h += "<tbody  id='queryTableXX'>";
@@ -141,7 +139,7 @@ codeAssemblyFun.initListPage = function () {
     h += "<td style='width:150px;' align='center'>名称</td>";
     h += "<td style='width:150px;' align='center'>类型</td>";
     h += "<td style='width:150px;' align='center'>列表显示</td>";
-    h += "<td align='center'></td>";
+    h += "<td align='center'>排序</td>";
     h += "</tr>";
     h += "</thead>";
     h += "<tbody  id='listTableXX'>";
@@ -201,7 +199,10 @@ codeAssemblyFun.initFormPage = function () {
     h += "<td style='width:150px;' align='center'>表单显示</td>";
     h += "<td style='width:150px;' align='center'>列宽</td>";
     h += "<td style='width:150px;' align='center'>列高</td>";
-    h += "<td align='center'></td>";
+    h += "<td style='width:150px;' align='center'>显示类型</td>";
+    h += "<td style='width:150px;' align='center'>字典编码</td>";
+    h += "<td style='width:150px;' align='center'>父字典编码</td>";
+    h += "<td align='center'>排序</td>";
     h += "</tr>";
     h += "</thead>";
     h += "<tbody  id='formTableXX'>";
@@ -242,6 +243,31 @@ codeAssemblyFun.initFormPage = function () {
         h += "<td>";
         h += "<input type='text' id='form_height_" + item.camelName + "' name='form_height_" + item.camelName + "'>";
         h += "</td>";
+        if (item.type == 'String') {
+            h += "<td>";
+            h += "<select id='form_disType_" + item.camelName + "'  name='form_disType_" + item.camelName + "'  style='width:100%;'>";
+            h += "<option value=''>普通</option>";
+            h += "<option value='Dic'>字典</option>";
+            h += "<option value='DeptSelect'>部门选择</option>";
+            h += "<option value='UserSelect'>人员选择</option>";
+            h += "</select>";
+            h += "</td>";
+            h += "</td>";
+            h += "<td>";
+            h += "<input type='text' id='form_dicCode_" + item.camelName + "'  name='form_dicCode_" + item.camelName + "'>";
+            h += "</td>";
+            h += "<td>";
+            h += "<input type='text' id='form_dicParentCode_" + item.camelName + "'  name='form_dicParentCode_" + item.camelName + "'>";
+            h += "</td>";
+        } else {
+            h += "<td>";
+            h += '普通';
+            h += "</td>";
+            h += "<td>";
+            h += "</td>";
+            h += "<td>";
+            h += "</td>";
+        }
         h += "<td>";
         h += "<input type='hidden' id='form_code_" + item.camelName + "' name='form_code_" + item.camelName + "' value='" + item.camelName + "'>";
         h += "<input type='hidden' id='form_type_" + item.camelName + "'  name='form_type_" + item.camelName + "' value='" + item.type + "'>";
@@ -261,6 +287,7 @@ codeAssemblyFun.initFormPage = function () {
 codeAssemblyFun.save = function () {
     var formData = [];
     var sortNow = 0;
+    var isDicOk = true;
     $("[name^='form_code_']").each(function (itemIndex, itemObj) {
         var camelName = $(itemObj).val();
         var displayValue = $("#form_display_" + camelName).val();
@@ -268,6 +295,15 @@ codeAssemblyFun.save = function () {
         var heightValue = $("#form_height_" + camelName).val();
         var typeValue = $("#form_type_" + camelName).val();
         var labelValue = $("#form_label_" + camelName).val();
+        var disTypeValue = $("#form_disType_" + camelName).val();
+        var dicCodeValue = $("#form_dicCode_" + camelName).val();
+        var dicParentCodeValue = $("#form_dicParentCode_" + camelName).val();
+        if (disTypeValue == 'Dic') {
+            if (!(dicCodeValue && dicCodeValue != '' && dicParentCodeValue && dicParentCodeValue != '')) {
+                isDicOk = false;
+                return;
+            }
+        }
         var itemData = {
             "name": codeAssemblyFun.nvl(camelName),
             "display": codeAssemblyFun.nvl(displayValue),
@@ -275,10 +311,17 @@ codeAssemblyFun.save = function () {
             "height": codeAssemblyFun.nvl(heightValue),
             "type": codeAssemblyFun.nvl(typeValue),
             "label": codeAssemblyFun.nvl(labelValue),
+            "disType": codeAssemblyFun.nvl(disTypeValue),
+            "dicCode": codeAssemblyFun.nvl(dicCodeValue),
+            "dicParentCode": codeAssemblyFun.nvl(dicParentCodeValue),
             "sort": sortNow++
         };
         formData[formData.length] = itemData;
     })
+    if(!isDicOk){
+        layer.alert("请在表单输入字典编码信息");
+        return;
+    }
     console.log(formData)
 
     var listData = [];
@@ -301,6 +344,7 @@ codeAssemblyFun.save = function () {
 
     var queryData = [];
     sortNow = 0;
+
     $("[name^='query_code_']").each(function (itemIndex, itemObj) {
 
         var camelName = $(itemObj).val();
@@ -324,13 +368,13 @@ codeAssemblyFun.save = function () {
     var selectProjectName = $("#selectProjectName").val();
     var selectTableBaseDir = $("#selectTableBaseDir").val();
     var selectId = $("#selectId").val();
-    if(selectProjectName == null){
+    if (selectProjectName == null) {
         layer.alert("请输入项目名称");
-        return ;
+        return;
     }
-    if(selectTableBaseDir == null){
+    if (selectTableBaseDir == null) {
         layer.alert("请输入项目存储地址");
-        return ;
+        return;
     }
     $.ajax({
         type: "POST",
@@ -346,7 +390,7 @@ codeAssemblyFun.save = function () {
         },
         url: "/code/build?n_=" + (new Date().getTime()),
         success: function (data) {
-            window.location.href = "/code/down";
+            //window.location.href = "/code/down";
             layer.alert("生成成功");
         }
     });

@@ -117,6 +117,22 @@ public class FtlServer {
                                Map<String, PageAttribute> formDataMap,
                                Map<String, PageAttribute> listDataMap,
                                Map<String, PageAttribute> queryDataMap) throws Exception {
+        //属性共享
+        PageAttribute nowPageAtt;
+        for(PageAttribute pageAtt:formDataMap.values()){
+            nowPageAtt = queryDataMap.get(pageAtt.getName());
+            if(nowPageAtt!=null){
+                nowPageAtt.setDisType(pageAtt.getDisType());
+                nowPageAtt.setDicCode(pageAtt.getDicCode());
+                nowPageAtt.setDicParentCode(pageAtt.getDicParentCode());
+            }
+            nowPageAtt = listDataMap.get(pageAtt.getName());
+            if(nowPageAtt!=null){
+                nowPageAtt.setDisType(pageAtt.getDisType());
+                nowPageAtt.setDicCode(pageAtt.getDicCode());
+                nowPageAtt.setDicParentCode(pageAtt.getDicParentCode());
+            }
+        }
         //加载模板
         FreeMarkerInit freeMarker = FreeMarkerInit.getInstance(ftlConfig);
         //取得默认配置
@@ -162,11 +178,19 @@ public class FtlServer {
         context.put("formRowList", assemblyForm(formItemList));
         //Attribute里面封装模板使用属性
         List<Attribute> attrList = MetadataUtil.getTableColumnsInfo(nowVO, selectTableNow);
-        PageAttribute queryItem;
+        PageAttribute nowItem;
         for (Attribute att : attrList) {
-            queryItem = queryDataMap.get(att.getCamelName());
-            if (queryItem != null && "Y".equalsIgnoreCase(queryItem.getQuery())) {
-                att.setQueryByLike(2);
+            nowItem = queryDataMap.get(att.getCamelName());
+            if (nowItem != null) {
+                if ("Y".equalsIgnoreCase(nowItem.getQuery())) {
+                    att.setQueryByLike(2);
+                }
+            }
+            nowItem = formDataMap.get(att.getCamelName());
+            if (nowItem != null) {
+                att.setDisType(nowItem.getDisType());
+                att.setDicCode(nowItem.getDicCode());
+                att.setDicParentCode(nowItem.getDicParentCode());
             }
         }
         context.put("attrs", attrList);

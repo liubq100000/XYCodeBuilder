@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/web/include/head.jsp"%>
 <%@ include file="/WEB-INF/web/include/taglib.jsp"%>
+<%@ include file="/WEB-INF/web/include/jctree.jsp"%>
 <section class="scrollable padder jcGOA-section" id="scrollable">
 	<header class="con-header pull-in" id="navigationMenu">
 		<h1></h1><div class="crumbs"></div>
@@ -10,7 +11,8 @@
 			<form class="table-wrap form-table" id="searchForm">
 				<table class="table table-td-striped">
 					<tbody>
-						<#list queryRowList as queryRowItem><tr>
+						<#list queryRowList as queryRowItem>
+						<tr>
 							<#list queryRowItem.rowList as queryItem>
 							<#if (queryItem.flag > 0)>
 							<td class="w140">${queryItem.label}</td>
@@ -21,6 +23,12 @@
 								<div class="input-group-btn w30">-</div>
 								<input class="datepicker-input" type="text" id="query_${queryItem.name}End" name="query_${queryItem.name}End" data-pick-time="false" data-date-format="yyyy-MM-dd" data-ref-obj="<#noparse>#</#noparse>query_${queryItem.name}Begin gt">
 								</div>
+								<#elseif queryItem.disType?contains("Dic")>
+								<dic:select  id="query_${queryItem.name}"  name="query_${queryItem.name}" dictName="${queryItem.dicCode}" parentCode="${queryItem.dicParentCode}" defaultValue=""  headName="-全部-" headValue=""/>
+								<#elseif queryItem.disType?contains("DeptSelect")>
+								<div id="${queryItem.name}SearchDiv">
+								<#elseif queryItem.disType?contains("UserSelect")>
+								<div id="${queryItem.name}SearchDiv">
 								<#else>
 								<input type="text" id="query_${queryItem.name}" name="query_${queryItem.name}"/>
 								</#if>

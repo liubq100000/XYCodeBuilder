@@ -1,5 +1,25 @@
 var ${className2}JsForm = {};
 
+<#list formRowList as formRowItem>
+<#list formRowItem.rowList as formItem>
+<#if formItem.disType?contains("DeptSelect")>
+${formItem.name}FormTree = JCTree.init({
+    container: "${formItem.name}FormDiv",
+    controlId: "${formItem.name}FormDiv-${formItem.name}",
+    isCheckOrRadio:false,
+    isPersonOrOrg:false
+});
+<#elseif formItem.disType?contains("UserSelect")>
+${formItem.name}FormTree = JCTree.init({
+    container: "${formItem.name}FormDiv",
+    controlId: "${formItem.name}FormDiv-${formItem.name}",
+    isCheckOrRadio:false,
+    isPersonOrOrg:true
+});
+</#if>
+</#list>
+</#list>
+
 //初始化
 ${className2}JsForm.init = function(config) {
     <#noparse>$('#entityFormTitle').html(config.title)</#noparse>;
@@ -16,6 +36,19 @@ ${className2}JsForm.init = function(config) {
                 if (data) {
                     hideErrorMessage();
                     <#noparse>$("#entityForm").fill(data);</#noparse>
+                    <#list formRowList as formRowItem>
+                    <#list formRowItem.rowList as formItem>
+                    <#if formItem.disType?contains("DeptSelect")>
+                    if (data.${formItem.name} && data.${formItem.name}Value) {
+                        ${formItem.name}FormTree.setData(data.${formItem.name}Value[0]);
+                    }
+                    <#elseif formItem.disType?contains("UserSelect")>
+                    if (data.${formItem.name} && data.${formItem.name}Value) {
+                        ${formItem.name}FormTree.setData(data.${formItem.name}Value[0]);
+                    }
+                    </#if>
+                    </#list>
+                    </#list>
                     ${className2}JsForm.operatorModal('show');
                 }
             }

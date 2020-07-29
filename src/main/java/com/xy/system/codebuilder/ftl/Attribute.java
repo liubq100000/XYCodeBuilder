@@ -9,6 +9,9 @@ public class Attribute {
     private String columnName;
     private String remarks;
     private String typeName;
+    private String disType = "";
+    private String dicCode = "";
+    private String dicParentCode = "";
     private int queryByLike = 0;
     private int size;
     private List<String> extAttList = new ArrayList<>();
@@ -92,5 +95,29 @@ public class Attribute {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public String getDisType() {
+        return disType;
+    }
+
+    public void setDisType(String disType) {
+        this.disType = disType;
+    }
+
+    public String getDicCode() {
+        return dicCode;
+    }
+
+    public void setDicCode(String dicCode) {
+        this.dicCode = dicCode;
+    }
+
+    public String getDicParentCode() {
+        return dicParentCode;
+    }
+
+    public void setDicParentCode(String dicParentCode) {
+        this.dicParentCode = dicParentCode;
     }
 }
