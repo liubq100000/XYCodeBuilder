@@ -123,9 +123,7 @@ ${formItem.name}FormTree = JCTree.init({
 
 $(document).ready(function(){
     ie8StylePatch();
-
     $(".datepicker-input").each(function(){$(this).datepicker();});
-
     $("#saveAndClose").click(function(){${className2}JsForm.saveOrModify(true);});
     $("#saveOrModify").click(function(){${className2}JsForm.saveOrModify(false);});
     $("#formDivClose").click(function(){$('#myModal-edit').modal('hide');});
