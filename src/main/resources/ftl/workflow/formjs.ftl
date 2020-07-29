@@ -132,7 +132,7 @@ $(document).ready(function(){
 
     var businessJson = $("#businessJson").val();
     if(businessJson.length>0){
-    var businessObj = eval("("+businessJson+")");
+        var businessObj = eval("("+businessJson+")");
         $("#entityForm").fill(businessObj);
         <#list formRowList as formRowItem>
         <#list formRowItem.rowList as formItem>
