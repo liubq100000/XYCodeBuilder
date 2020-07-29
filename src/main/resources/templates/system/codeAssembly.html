@@ -23,9 +23,9 @@
     }
     .nav a{
         width: 250px;
-        height: 50px;
+        height: 45px;
         text-align: center;
-        font-size: 28px;
+        font-size: 26px;
         line-height: 51px;
         border-right: 1px solid brown;
         border-bottom: 1px solid brown;
@@ -41,7 +41,25 @@
         height: 747px;
         position: absolute;
         left: 0;
-        top:52px;;
+        top:47px;;
+    }
+    .layer_self_wrap td{
+        height: 28px;
+    }
+    .layer_self_wrap input{
+        height: 28px;
+    }
+    .layer_self_wrap select{
+        height: 28px;
+    }
+    .mytitle input{
+        vertical-align: middle;
+    }
+    .mytitle input{
+        height: 28px;
+    }
+    .mytitle select{
+        height: 32px;
     }
 </style>
 <div class="layui-layout layui-layout-admin">
@@ -51,15 +69,28 @@
     <div style="margin: 1%;">
         <input type="hidden" id="selectId" name="selectId" th:value="${selectId}">
         <input type="hidden" id="selectTableNow" name="selectTableNow" th:value="${selectTableNow}">
-        <div style="font-size:20px;font-weight: bold">
-        表名：<span th:text="${selectTableNow}"></span>
-        ，功能名称：<input type="text" id="selectProjectName" name="selectProjectName" value="测试功能">
-        ，路径：<input type="text" id="selectTableBaseDir" name="selectTableBaseDir" value="com.jc.xx.project"  >
-        ，是否：
-        <select id="selectMode" name="selectMode" style="width:120px;padding: 1px 1px 5px 3px; margin: 0;">
-            <option value="Normal">普通</option>
-            <option value="WorkFlow">工作流</option>
-        </select>
+
+        <div class="mytitle" style="font-size:20px;font-weight: bold;">
+            <table style="text-align:center">
+                <tr>
+                    <td>
+                        存储表名：<input type="text"  th:value="${selectTableNow}"  disabled="disabled">
+                    </td>
+                    <td>
+                        <span style='color:#F00;font-weight: bold'>功能名称：</span><input type="text" id="selectProjectName" name="selectProjectName" value="测试功能">
+                    </td>
+                    <td>
+                        <span style='color:#F00;font-weight: bold'>代码路径：</span><input type="text" id="selectTableBaseDir" name="selectTableBaseDir" value="com.jc.xx.project"  >
+                    </td>
+                    <td>
+                        功能类型：
+                        <select id="selectMode" name="selectMode" style="width:150px;">
+                            <option value="Normal">普通</option>
+                            <option value="WorkFlow">工作流</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
         </div>
         <br>
         <div class="layui-form-item">

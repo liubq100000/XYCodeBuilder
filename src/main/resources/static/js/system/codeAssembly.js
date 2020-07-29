@@ -78,7 +78,7 @@ codeAssemblyFun.initQueryPage = function () {
     h += "<tr>";
     h += "<td style='width:150px;' align='center'>名称</td>";
     h += "<td style='width:150px;' align='center'>类型</td>";
-    h += "<td style='width:150px;' align='center'>查询显示</td>";
+    h += "<td style='width:150px;' align='center'><span style='color:#F00;font-weight: bold'>查询显示</span></td>";
     h += "<td style='width:150px;' align='center'>模糊</td>";
     h += "<td align='center'>排序</td>";
     h += "</tr>";
@@ -138,7 +138,7 @@ codeAssemblyFun.initListPage = function () {
     h += "<tr>";
     h += "<td style='width:150px;' align='center'>名称</td>";
     h += "<td style='width:150px;' align='center'>类型</td>";
-    h += "<td style='width:150px;' align='center'>列表显示</td>";
+    h += "<td style='width:150px;' align='center'><span style='color:#F00;font-weight: bold'>列表显示</span></td>";
     h += "<td align='center'>排序</td>";
     h += "</tr>";
     h += "</thead>";
@@ -196,7 +196,7 @@ codeAssemblyFun.initFormPage = function () {
     h += "<tr>";
     h += "<td style='width:150px;' align='center'>名称</td>";
     h += "<td style='width:150px;' align='center'>类型</td>";
-    h += "<td style='width:150px;' align='center'>表单显示</td>";
+    h += "<td style='width:150px;' align='center'><span style='color:#F00;font-weight: bold'>表单显示</span></td>";
     h += "<td style='width:150px;' align='center'>列宽</td>";
     h += "<td style='width:150px;' align='center'>列高</td>";
     h += "<td style='width:150px;' align='center'>显示类型</td>";

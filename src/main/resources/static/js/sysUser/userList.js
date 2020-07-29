@@ -14,7 +14,7 @@ $(function() {
             method: 'post', //默认：get请求
             cellMinWidth: 80,
             page: true,
-            limit:2,
+            limit:10,
             request: {
                 pageName: 'pageNum', //页码的参数名称，默认：pageNum
                 limitName: 'pageSize' //每页数据量的参数名，默认：pageSize
@@ -91,7 +91,7 @@ $(function() {
         //监听搜索框
         form.on('submit(searchSubmit)', function(data){
             //重新加载table
-            load(data);
+            formSubmit(data);
             return false;
         });
     });
@@ -224,7 +224,7 @@ function recoverUser(obj,id) {
 function load(obj){
     //重新加载table
     tableIns.reload({
-        where: obj.field
+        where: obj.f
         , page: {
             curr: pageCurr //从当前页码开始
         }
