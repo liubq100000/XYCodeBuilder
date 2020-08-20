@@ -17,8 +17,8 @@
 						<#list queryRowList as queryRowItem><tr>
 							<#list queryRowItem.rowList as queryItem>
 							<#if (queryItem.flag > 0)>
-							<td class="w140">${queryItem.label}</td>
-							<td>
+							<td style="width:10%">${queryItem.label}</td>
+							<td style="width:40%">
 								<#if queryItem.type?contains("Date")>
 								<div class="input-group w-p100">
 								<input class="datepicker-input" type="text" id="query_${queryItem.name}Begin" name="query_${queryItem.name}Begin" data-pick-time="false" data-date-format="yyyy-MM-dd" data-ref-obj="<#noparse>#</#noparse>query_${queryItem.name}End lt">
@@ -43,13 +43,12 @@
 						</#list>
 					</tbody>
 				</table>
-				<section class="form-btn m-b-lg">
-					<button class="btn dark query-jump" type="button" id="queryBtn">查 询</button>
-					<button class="btn" type="reset" id="resetBtn">重 置</button>
-				</section>
+				<div  class="btn-tiwc">
+					<button class="btn" type="button" id="queryBtn">查 询</button>
+					<button class="btn" type="button" id="queryReset">重 置</button>
+				</div>
 			</form>
 		</div>
-		<%@include file= "/WEB-INF/web/include/searchConditionHide.jsp"%>
 	</section>
 	<section class="panel clearfix" id="sendPassTransact-list">
 		<div class="table-wrap">

@@ -53,8 +53,8 @@ ${className2}JsList.oTableAoColumns = [
     {mData: '${listItem.name}', sTitle: '${listItem.label}', bSortable: false},
     </#list>
 	{mData: function(source) {
-		var edit = "<a class=\"a-icon i-edit m-r-xs\" <#noparse> href=\"#myModal-edit\" </#noparse> onclick=\"${className2}JsList.loadModuleForUpdate('"+ source.id+ "')\" role=\"button\">" + finalParamEditText + "</a>";
-		var del = "<a class=\"a-icon i-remove\" <#noparse> href=\"#\" </#noparse> onclick=\"${className2}JsList.delete('"+ source.id+ "')\">" + finalParamDeleteText + "</a>";
+		var edit = "<a class=\"a-icon i-edit m-r-xs\" <#noparse> href=\"#myModal-edit\" </#noparse> onclick=\"${className2}JsList.loadModuleForUpdate('"+ source.id+ "')\" role=\"button\">编辑</a>";
+		var del = "<a class=\"a-icon i-remove\" <#noparse> href=\"#\" </#noparse> onclick=\"${className2}JsList.delete('"+ source.id+ "')\">删除</a>";
 		return edit + del;
 	}, sTitle: '操作', bSortable: false, sWidth: 170}
 ];

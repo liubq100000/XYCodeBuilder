@@ -15,8 +15,8 @@
 						<tr>
 							<#list queryRowItem.rowList as queryItem>
 							<#if (queryItem.flag > 0)>
-							<td class="w140">${queryItem.label}</td>
-							<td>
+							<td style="width:10%">${queryItem.label}</td>
+							<td style="width:40%">
 								<#if queryItem.type?contains("Date")>
 								<div class="input-group w-p100">
 								<input class="datepicker-input" type="text" id="query_${queryItem.name}Begin" name="query_${queryItem.name}Begin" data-pick-time="false" data-date-format="yyyy-MM-dd" data-ref-obj="<#noparse>#</#noparse>query_${queryItem.name}End lt">
@@ -39,25 +39,23 @@
 							</#list>
 						</tr>
 						</#list>
-						<tr>
-							<td style="text-align: center; background: #FFFFFF;" colspan="4">
-								<button class="btn" type="button" id="queryBtn">查 询</button>
-								<button class="btn" type="button" id="resetBtn">重 置</button>
-							</td>
-						</tr>
 					</tbody>
 				</table>
+				<div  class="btn-tiwc">
+					<button class="btn" type="button" id="queryBtn">查 询</button>
+					<button class="btn" type="button" id="resetBtn">重 置</button>
+				</div>
 			</form>
 		</div>
 	</section>
 	<section class="panel ">
-		<h2 class="panel-heading clearfix">查询结果</h2>
-		<div class="table-wrap"><table class="table table-striped tab_height" id="gridTable"></table></div>
-		<section class="clearfix" id="footer_height">
+		<div class="table-wrap">
 			<section class="form-btn fl m-l">
-				<a class="btn dark" role="button" id="addBtn">新 增</a>
+				<a class="btn dark" role="button" id="addBtn" style="margin: 0 !important;">新 增</a>
 			</section>
-		</section>
+			<table class="table table-striped tab_height" id="gridTable"></table>
+		</div>
+		<section class="clearfix" id="footer_height"></section>
 	</section>
 	<div id="formModule"></div>
 </section>

@@ -108,5 +108,5 @@ $(document).ready(function(){
     ${className2}JsDoneList.pageCount = TabNub > 0 ? TabNub : 10;
     ${className2}JsDoneList.renderTable();
     <#noparse>$('#queryBtn')</#noparse>.click(${className2}JsDoneList.renderTable);
-    <#noparse>$('#resetBtn')</#noparse>.click(${className2}JsDoneList.queryReset);
+    <#noparse>$('#queryReset')</#noparse>.click(${className2}JsDoneList.queryReset);
 });

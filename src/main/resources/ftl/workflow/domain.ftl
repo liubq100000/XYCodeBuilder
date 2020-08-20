@@ -1,5 +1,6 @@
 package ${packageName};
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jc.foundation.domain.BaseBean;
 import java.util.List;
 import java.util.Map;
@@ -24,10 +25,14 @@ public class ${className} extends BaseBean {
 	<#list attrs as attr>
 	<#if (attr.busiItemType>0)>
 	<#if attr.typeName?contains("Date")>
+	//${attr.label}
 	private ${attr.type} ${attr.camelName};
+	//${attr.label}
 	private ${attr.type} ${attr.camelName}Begin;
+	//${attr.co~label}
 	private ${attr.type} ${attr.camelName}End;
 	<#else>
+	//${attr.label}
 	private ${attr.type} ${attr.camelName};
 	</#if>
 	</#if>
@@ -60,6 +65,7 @@ public class ${className} extends BaseBean {
 	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
 		this.${attr.camelName} = ${attr.camelName};
 	}
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
 	public ${attr.type} get${attr.pascalName}() {
 		return ${attr.camelName};
 	}
