@@ -197,8 +197,8 @@ codeAssemblyFun.initFormPage = function () {
     h += "<td style='width:150px;' align='center'>名称</td>";
     h += "<td style='width:150px;' align='center'>类型</td>";
     h += "<td style='width:150px;' align='center'><span style='color:#F00;font-weight: bold'>表单显示</span></td>";
-    h += "<td style='width:150px;' align='center'>列宽</td>";
-    h += "<td style='width:150px;' align='center'>列高</td>";
+    // h += "<td style='width:150px;' align='center'>列宽</td>";
+    // h += "<td style='width:150px;' align='center'>列高</td>";
     h += "<td style='width:150px;' align='center'>显示类型</td>";
     h += "<td style='width:150px;' align='center'>字典编码</td>";
     h += "<td style='width:150px;' align='center'>父字典编码</td>";
@@ -234,15 +234,15 @@ codeAssemblyFun.initFormPage = function () {
             h += "</select>";
         }
         h += "</td>";
-        h += "<td>";
-        h += "<select id='form_width_" + item.camelName + "' name='form_width_" + item.camelName + "' style='width:100%;'>";
-        h += "<option value='1'>1</option>";
-        h += "<option value='2'>2</option>";
-        h += "</select>";
-        h += "</td>";
-        h += "<td>";
-        h += "<input type='text' id='form_height_" + item.camelName + "' name='form_height_" + item.camelName + "'>";
-        h += "</td>";
+        // h += "<td>";
+        // h += "<select id='form_width_" + item.camelName + "' name='form_width_" + item.camelName + "' style='width:100%;'>";
+        // h += "<option value='1'>1</option>";
+        // h += "<option value='2'>2</option>";
+        // h += "</select>";
+        // h += "</td>";
+        // h += "<td>";
+        // h += "<input type='text' id='form_height_" + item.camelName + "' name='form_height_" + item.camelName + "'>";
+        // h += "</td>";
         if (item.type == 'String') {
             h += "<td>";
             h += "<select id='form_disType_" + item.camelName + "'  name='form_disType_" + item.camelName + "'  style='width:100%;'>";
@@ -291,8 +291,8 @@ codeAssemblyFun.save = function () {
     $("[name^='form_code_']").each(function (itemIndex, itemObj) {
         var camelName = $(itemObj).val();
         var displayValue = $("#form_display_" + camelName).val();
-        var widthValue = $("#form_width_" + camelName).val();
-        var heightValue = $("#form_height_" + camelName).val();
+        var widthValue = 1;//$("#form_width_" + camelName).val();
+        var heightValue = 1;//$("#form_height_" + camelName).val();
         var typeValue = $("#form_type_" + camelName).val();
         var labelValue = $("#form_label_" + camelName).val();
         var disTypeValue = $("#form_disType_" + camelName).val();

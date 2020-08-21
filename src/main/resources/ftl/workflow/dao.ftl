@@ -9,7 +9,6 @@ import com.jc.foundation.domain.PageManager;
  * @title  
  * @version  
  */
- 
 public interface I${className}Dao extends IBaseDao<${className}>{
 
  public PageManager workFlowTodoQueryByPage(${className} cond, PageManager page) ;

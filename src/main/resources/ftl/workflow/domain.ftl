@@ -29,7 +29,7 @@ public class ${className} extends BaseBean {
 	private ${attr.type} ${attr.camelName};
 	//${attr.label}
 	private ${attr.type} ${attr.camelName}Begin;
-	//${attr.co~label}
+	//${attr.label}
 	private ${attr.type} ${attr.camelName}End;
 	<#else>
 	//${attr.label}
