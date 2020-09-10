@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
 import java.io.Serializable;
-
+import java.math.BigDecimal;
 /**
  * @author liubq
  * @version 2020-07-10

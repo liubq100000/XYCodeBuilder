@@ -6,6 +6,7 @@
 			<div class="layui-card-header">基本信息</div>
 			<div class="layui-card-body">
 				<div class="layui-form-item layui-row">
+					<input type="hidden" id="id" name="id"  />
 					<#list formRowList as formRowItem>
 					<#list formRowItem.rowList as formItem>
 					<div class="layui-inline layui-col-md12">
