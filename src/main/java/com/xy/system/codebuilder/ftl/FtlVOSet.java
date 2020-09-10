@@ -8,12 +8,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class FltTemplateSet {
+public class FtlVOSet {
     private List<FtlVO> files;
-    private FtlConfig nowConfig;
+    private FtlPath nowConfig;
     public String subPath;
 
-    public FltTemplateSet(List<FtlVO> files, FtlConfig ftlConfig, String inSubPath) {
+    public FtlVOSet(List<FtlVO> files, FtlPath ftlConfig, String inSubPath) {
         this.files = files;
         this.nowConfig = ftlConfig;
         this.subPath = inSubPath;

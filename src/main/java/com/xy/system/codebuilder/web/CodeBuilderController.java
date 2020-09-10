@@ -36,7 +36,7 @@ public class CodeBuilderController {
     private IDataSourceService billService;
 
     @Autowired
-    private FtlConfig ftlConfig;
+    private FtlPath ftlConfig;
 
     private ScheduledExecutorService executorService;
 

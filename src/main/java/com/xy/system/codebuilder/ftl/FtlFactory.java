@@ -5,7 +5,7 @@ import java.util.List;
 
 public class FtlFactory {
 
-    public static FltTemplateSet get(final String selectMode,final FtlConfig inFtlConfig){
+    public static FtlVOSet get(final String selectMode, final FtlPath inFtlConfig){
         if("WorkFlow".equalsIgnoreCase(selectMode)){
             return getWorkFlowFileList(inFtlConfig);
         } else if("NewFile".equalsIgnoreCase(selectMode)){
@@ -15,7 +15,7 @@ public class FtlFactory {
         }
     }
 
-    private  static FltTemplateSet getNormalFileList(final FtlConfig inFtlConfig) {
+    private  static FtlVOSet getNormalFileList(final FtlPath inFtlConfig) {
         List<FtlVO> voList = new ArrayList<>();
         voList.add(new FtlVO("dao.ftl", "java", "dao", "I", "Dao.java"));
         voList.add(new FtlVO("daoImpl.ftl", "java", "dao/impl", "", "DaoImpl.java"));
@@ -29,10 +29,10 @@ public class FtlFactory {
         voList.add(new FtlVO("formjs.ftl", false, "webapp/js", "", true, "", "Form.js"));
         voList.add(new FtlVO("listjsp.ftl", true, "webapp/WEB-INF/web", "", true, "", "List.jsp"));
         voList.add(new FtlVO("formjsp.ftl", true, "webapp/WEB-INF/web", "", true, "", "Form.jsp"));
-        return new FltTemplateSet(voList, inFtlConfig, "normal");
+        return new FtlVOSet(voList, inFtlConfig, "normal");
     }
 
-    private static FltTemplateSet getWorkFlowFileList(final FtlConfig inFtlConfig) {
+    private static FtlVOSet getWorkFlowFileList(final FtlPath inFtlConfig) {
         List<FtlVO> voList = new ArrayList<>();
         voList.add(new FtlVO("dao.ftl", "java", "dao", "I", "Dao.java"));
         voList.add(new FtlVO("daoImpl.ftl", "java", "dao/impl", "", "DaoImpl.java"));
@@ -49,10 +49,10 @@ public class FtlFactory {
         voList.add(new FtlVO("todolistjsp.ftl", true, "webapp/WEB-INF/web", "", true, "", "_todoList.jsp"));
         voList.add(new FtlVO("donelistjsp.ftl", true, "webapp/WEB-INF/web", "", true, "", "_doneList.jsp"));
         voList.add(new FtlVO("formjsp.ftl", true, "webapp/WEB-INF/web", "", true, "", "_form.jsp"));
-        return new FltTemplateSet(voList, inFtlConfig, "workflow");
+        return new FtlVOSet(voList, inFtlConfig, "workflow");
     }
 
-    private static FltTemplateSet getNewFileList(final FtlConfig inFtlConfig) {
+    private static FtlVOSet getNewFileList(final FtlPath inFtlConfig) {
         List<FtlVO> voList = new ArrayList<>();
         voList.add(new FtlVO("domain.ftl", "java", "entity", "", ".java"));
         voList.add(new FtlVO("param.ftl", "java", "model/params", "", "Param.java"));
@@ -68,6 +68,6 @@ public class FtlFactory {
         voList.add(new FtlVO("jslist.ftl", true, "webapp/assets", "", true, "", ".js"));
         voList.add(new FtlVO("jsadd.ftl", true, "webapp/assets", "", true, "", "_add.js"));
         voList.add(new FtlVO("jsedit.ftl", true, "webapp/assets", "", true, "", "_edit.js"));
-        return new FltTemplateSet(voList, inFtlConfig, "newfile");
+        return new FtlVOSet(voList, inFtlConfig, "newfile");
     }
 }

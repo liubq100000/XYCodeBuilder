@@ -109,7 +109,7 @@ public class FtlServer {
      * @return
      * @throws Exception
      */
-    public static String build(DataSourceVO nowVO, FtlConfig ftlConfig,
+    public static String build(DataSourceVO nowVO, FtlPath ftlConfig,
                                String selectTableNow,
                                String selectProjectName,
                                String selectTableBaseDir,
@@ -134,7 +134,7 @@ public class FtlServer {
             }
         }
         //加载模板
-        FltTemplateSet templateSet = FtlFactory.get(selectMode, ftlConfig);
+        FtlVOSet templateSet = FtlFactory.get(selectMode, ftlConfig);
         //固定变量
         Map<String, Object> context = new HashMap<String, Object>();
         context.put("basePackage", JavaNameUtil.getPackage(selectTableBaseDir));

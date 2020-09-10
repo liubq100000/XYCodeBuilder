@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "ftl")
-public class FtlConfig {
+public class FtlPath {
 
     private String path;
 
