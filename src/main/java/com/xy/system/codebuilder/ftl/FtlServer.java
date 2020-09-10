@@ -119,24 +119,22 @@ public class FtlServer {
                                Map<String, PageAttribute> queryDataMap) throws Exception {
         //属性共享
         PageAttribute nowPageAtt;
-        for(PageAttribute pageAtt:formDataMap.values()){
+        for (PageAttribute pageAtt : formDataMap.values()) {
             nowPageAtt = queryDataMap.get(pageAtt.getName());
-            if(nowPageAtt!=null){
+            if (nowPageAtt != null) {
                 nowPageAtt.setDisType(pageAtt.getDisType());
                 nowPageAtt.setDicCode(pageAtt.getDicCode());
                 nowPageAtt.setDicParentCode(pageAtt.getDicParentCode());
             }
             nowPageAtt = listDataMap.get(pageAtt.getName());
-            if(nowPageAtt!=null){
+            if (nowPageAtt != null) {
                 nowPageAtt.setDisType(pageAtt.getDisType());
                 nowPageAtt.setDicCode(pageAtt.getDicCode());
                 nowPageAtt.setDicParentCode(pageAtt.getDicParentCode());
             }
         }
         //加载模板
-        FreeMarkerInit freeMarker = FreeMarkerInit.getInstance(ftlConfig);
-        //取得默认配置
-        List<ConfigVO> configVOS = "WorkFlow".equalsIgnoreCase(selectMode) ? ConfigFactory.getWorkFlowFileList() : ConfigFactory.getNormalFileList();
+        FltTemplateSet templateSet = FtlFactory.get(selectMode, ftlConfig);
         //固定变量
         Map<String, Object> context = new HashMap<String, Object>();
         context.put("basePackage", JavaNameUtil.getPackage(selectTableBaseDir));
@@ -197,7 +195,7 @@ public class FtlServer {
         //生成路径
         String savePath = ftlConfig.getOut() + "//" + System.currentTimeMillis();
         //轮询文件
-        for (ConfigVO vo : configVOS) {
+        for (FtlVO vo : templateSet.getFiles()) {
             String nowPath = savePath + "/" + vo.getPrePath() + "/";
             if (vo.isShortPath()) {
                 nowPath += modulePath + "/" + minPath + "/";
@@ -208,7 +206,7 @@ public class FtlServer {
             String packageName = JavaNameUtil.getPackage(selectTableBaseDir, vo.getAfterPath());
 
             //获取模板
-            Template temp = "WorkFlow".equalsIgnoreCase(selectMode) ? freeMarker.getWorkflowTemplate(vo.getFtlName()) : freeMarker.getDefinedTemplate(vo.getFtlName());
+            Template temp = templateSet.find(vo.getFtlName());
             context.put("packageName", packageName);
             String classFileName = vo.getPreName() + className + vo.getAfterName();
             if (vo.isShortName()) {

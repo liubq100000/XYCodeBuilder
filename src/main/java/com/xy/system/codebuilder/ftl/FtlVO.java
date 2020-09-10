@@ -1,6 +1,6 @@
 package com.xy.system.codebuilder.ftl;
 
-public class ConfigVO {
+public class FtlVO {
     private String prePath;
     private boolean shortPath;
     private boolean shortName;
@@ -9,7 +9,7 @@ public class ConfigVO {
     private String preName;
     private String afterName;
 
-    public ConfigVO(String ftlName, String prePath, String afterPath,String preName, String afterName) {
+    public FtlVO(String ftlName, String prePath, String afterPath, String preName, String afterName) {
         this.ftlName = ftlName;
         this.shortPath = false;
         this.prePath = prePath;
@@ -19,7 +19,7 @@ public class ConfigVO {
         this.afterName = afterName;
     }
 
-    public ConfigVO(String ftlName, boolean shortPath, String prePath, String afterPath, boolean shortName, String preName, String afterName) {
+    public FtlVO(String ftlName, boolean shortPath, String prePath, String afterPath, boolean shortName, String preName, String afterName) {
         this.ftlName = ftlName;
         this.shortPath = shortPath;
         this.prePath = prePath;
