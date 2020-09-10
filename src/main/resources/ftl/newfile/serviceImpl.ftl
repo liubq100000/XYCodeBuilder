@@ -5,9 +5,6 @@ import ${basePackage}.model.params.${className}Param;
 import ${basePackage}.model.result.${className}Result;
 import ${basePackage}.mapper.${className}Mapper;
 import ${basePackage}.service.I${className}Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -25,7 +22,7 @@ import java.util.List;
 public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${className}> implements I${className}Service {
 	@Override
 	public void add(${className}Param param) {
-	${className} entity = getEntity(param);
+		${className} entity = getEntity(param);
 		this.save(entity);
 	}
 

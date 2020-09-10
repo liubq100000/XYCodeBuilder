@@ -17,6 +17,10 @@ public class ${className}Param implements Serializable, BaseValidatingParam {
 	private ${attr.type} ${attr.camelName};
 	</#list>
 
+	@Override
+	public String checkParam() {
+		return null;
+	}
 	<#-- 循环生成set get方法 -->
 	<#list attrs as attr>
 	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {

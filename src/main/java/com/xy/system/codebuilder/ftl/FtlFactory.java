@@ -62,6 +62,12 @@ public class FtlFactory {
         voList.add(new FtlVO("mapper.ftl", "java", "mapper", "", "Mapper.java"));
         voList.add(new FtlVO("xml.ftl", "java", "mapper/mapping", "", "Mapper.xml"));
         voList.add(new FtlVO("controller.ftl", "java", "controller", "", "Controller.java"));
+        voList.add(new FtlVO("htmllist.ftl", true, "webapp/pages", "", true, "", ".html"));
+        voList.add(new FtlVO("htmladd.ftl", true, "webapp/pages", "", true, "", "_add.html"));
+        voList.add(new FtlVO("htmledit.ftl", true, "webapp/pages", "", true, "", "_edit.html"));
+        voList.add(new FtlVO("jslist.ftl", true, "webapp/assets", "", true, "", ".js"));
+        voList.add(new FtlVO("jsadd.ftl", true, "webapp/assets", "", true, "", "_add.js"));
+        voList.add(new FtlVO("jsedit.ftl", true, "webapp/assets", "", true, "", "_edit.js"));
         return new FltTemplateSet(voList, inFtlConfig, "newfile");
     }
 }

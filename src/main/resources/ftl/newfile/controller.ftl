@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/${className2}")
 public class ${className}Controller extends BaseController {
 
-	private String PREFIX = "/${className2}";
+	private String PREFIX = "/${modulePath}/${minPath}";
 
 	@Autowired
 	private I${className}Service ${className2}Service;
