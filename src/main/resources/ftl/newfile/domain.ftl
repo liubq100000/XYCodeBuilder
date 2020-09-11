@@ -23,6 +23,7 @@ public class ${className} implements Serializable {
 	@TableId(value = "${attr.columnName}", type = IdType.ASSIGN_ID)
 	private ${attr.type} ${attr.camelName};
 	<#else>
+	//${attr.label}
 	@TableField("${attr.columnName}")
 	private ${attr.type} ${attr.camelName};
 	</#if>

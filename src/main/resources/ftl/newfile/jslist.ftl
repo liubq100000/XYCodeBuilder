@@ -19,7 +19,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
         return [[
             {type: 'checkbox'},
             <#list listItemList as listItem>
-                {field: '${listItem.name}', sort: false, title: '${listItem.label}'},
+            {field: '${listItem.name}', sort: false, title: '${listItem.label}'},
             </#list>
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
