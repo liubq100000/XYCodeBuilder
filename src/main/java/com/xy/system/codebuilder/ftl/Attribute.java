@@ -14,6 +14,7 @@ public class Attribute {
     private String dicParentCode = "";
     private int queryByLike = 0;
     private int size;
+    private int mode;
     private List<String> extAttList = new ArrayList<>();
 
     public Attribute(String columnName,String typeName, String remarks,int size) {
@@ -27,7 +28,7 @@ public class Attribute {
     }
 
     public int getBusiItemType() {
-        if(JavaNameUtil.isExt(columnName)){
+        if(mode == 0 && JavaNameUtil.isExt(columnName)){
             return 0;
         }
         return 1;
@@ -119,5 +120,13 @@ public class Attribute {
 
     public void setDicParentCode(String dicParentCode) {
         this.dicParentCode = dicParentCode;
+    }
+
+    public int getMode() {
+        return mode;
+    }
+
+    public void setMode(int mode) {
+        this.mode = mode;
     }
 }

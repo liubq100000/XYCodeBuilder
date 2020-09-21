@@ -1,8 +1,8 @@
 package ${packageName};
 
 import ${basePackage}.entity.${className};
-import ${basePackage}.model.params.${className}Param;
-import ${basePackage}.model.result.${className}Result;
+import ${basePackage}.model.${className}Param;
+import ${basePackage}.model.${className}Result;
 import ${basePackage}.mapper.${className}Mapper;
 import ${basePackage}.service.I${className}Service;
 import cn.stylefeng.roses.core.util.ToolUtil;
@@ -41,12 +41,16 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
 
 	@Override
 	public ${className}Result findBySpec(${className}Param param) {
-	return null;
+		List<${className}Result> list = baseMapper.customList(param);
+		if (list == null || list.size() == 0) {
+			return null;
+		}
+		return list.get(0);
 	}
 
 	@Override
 	public List<${className}Result> findListBySpec(${className}Param param) {
-		return null;
+		return baseMapper.customList(param);
 	}
 
 	@Override

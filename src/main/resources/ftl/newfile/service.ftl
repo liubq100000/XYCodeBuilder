@@ -1,8 +1,8 @@
 package ${packageName};
 
 import ${basePackage}.entity.${className};
-import ${basePackage}.model.params.${className}Param;
-import ${basePackage}.model.result.${className}Result;
+import ${basePackage}.model.${className}Param;
+import ${basePackage}.model.${className}Result;
 import com.yx.base.pojo.page.LayuiPageInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 

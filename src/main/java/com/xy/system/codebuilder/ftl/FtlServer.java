@@ -190,6 +190,7 @@ public class FtlServer {
                 att.setDicCode(nowItem.getDicCode());
                 att.setDicParentCode(nowItem.getDicParentCode());
             }
+            att.setMode(templateSet.getMode());
         }
         context.put("attrs", attrList);
         //生成路径

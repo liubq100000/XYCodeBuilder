@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.alibaba.fastjson.annotation.JSONField;
 import java.util.Date;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -31,11 +32,21 @@ public class ${className} implements Serializable {
 
 	<#-- 循环生成set get方法 -->
 	<#list attrs as attr>
+	<#if attr.typeName?contains("Date")>
+	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
+		this.${attr.camelName} = ${attr.camelName};
+	}
+	@JSONField(format = "yyyy-MM-dd")
+	public ${attr.type} get${attr.pascalName}() {
+		return ${attr.camelName};
+	}
+	<#else>
 	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
 		this.${attr.camelName} = ${attr.camelName};
 	}
 	public ${attr.type} get${attr.pascalName}() {
 		return ${attr.camelName};
 	}
+	</#if>
 	</#list>
 }

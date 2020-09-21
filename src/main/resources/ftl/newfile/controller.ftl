@@ -6,8 +6,8 @@ import cn.stylefeng.roses.kernel.model.response.ResponseData;
 import com.yx.base.pojo.page.LayuiPageInfo;
 
 import ${basePackage}.entity.${className};
-import ${basePackage}.model.params.${className}Param;
-import ${basePackage}.model.result.${className}Result;
+import ${basePackage}.model.${className}Param;
+import ${basePackage}.model.${className}Result;
 import ${basePackage}.service.I${className}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,8 +74,8 @@ public class ${className}Controller extends BaseController {
 	 */
 	@RequestMapping("/addItem")
 	@ResponseBody
-	public ResponseData addItem(${className}Param ${className}Param) {
-		this.${className2}Service.add(${className}Param);
+	public ResponseData addItem(${className}Param param) {
+		this.${className2}Service.add(param);
 		return ResponseData.success();
 	}
 
@@ -87,8 +87,8 @@ public class ${className}Controller extends BaseController {
 	 */
 	@RequestMapping("/editItem")
 	@ResponseBody
-	public ResponseData editItem(${className}Param ${className}Param) {
-		this.${className2}Service.update(${className}Param);
+	public ResponseData editItem(${className}Param param) {
+		this.${className2}Service.update(param);
 		return ResponseData.success();
 	}
 
@@ -100,8 +100,8 @@ public class ${className}Controller extends BaseController {
 	 */
 	@RequestMapping("/delete")
 	@ResponseBody
-	public ResponseData delete(${className}Param ${className}Param) {
-		this.${className2}Service.delete(${className}Param);
+	public ResponseData delete(${className}Param param) {
+		this.${className2}Service.delete(param);
 		return ResponseData.success();
 	}
 
@@ -113,8 +113,8 @@ public class ${className}Controller extends BaseController {
 	 */
 	@RequestMapping("/detail")
 	@ResponseBody
-	public ResponseData detail(${className}Param ${className}Param) {
-		${className} detail = this.${className2}Service.getById(${className}Param.getId());
+	public ResponseData detail(${className}Param param) {
+		${className} detail = this.${className2}Service.getById(param.getId());
 		return ResponseData.success(detail);
 	}
 
@@ -126,8 +126,8 @@ public class ${className}Controller extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/list")
-	public LayuiPageInfo list(${className}Param ${className}Param) {
-		return this.${className2}Service.findPageBySpec(${className}Param);
+	public LayuiPageInfo list(${className}Param param) {
+		return this.${className2}Service.findPageBySpec(param);
 	}
 
 }

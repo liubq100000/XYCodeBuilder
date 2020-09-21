@@ -54,13 +54,14 @@ public class FtlFactory {
 
     private static FtlVOSet getNewFileList(final FtlPath inFtlConfig) {
         List<FtlVO> voList = new ArrayList<>();
+        voList.add(new FtlVO("xml.ftl", "java", "mapper/mapping", "", "Mapper.xml"));
         voList.add(new FtlVO("domain.ftl", "java", "entity", "", ".java"));
-        voList.add(new FtlVO("param.ftl", "java", "model/params", "", "Param.java"));
-        voList.add(new FtlVO("result.ftl", "java", "model/result", "", "Result.java"));
+        voList.add(new FtlVO("bean.ftl", "java", "model", "", "Bean.java"));
+        voList.add(new FtlVO("param.ftl", "java", "model", "", "Param.java"));
+        voList.add(new FtlVO("result.ftl", "java", "model", "", "Result.java"));
         voList.add(new FtlVO("service.ftl", "java", "service", "I", "Service.java"));
         voList.add(new FtlVO("serviceImpl.ftl", "java", "service/impl", "", "ServiceImpl.java"));
         voList.add(new FtlVO("mapper.ftl", "java", "mapper", "", "Mapper.java"));
-        voList.add(new FtlVO("xml.ftl", "java", "mapper/mapping", "", "Mapper.xml"));
         voList.add(new FtlVO("controller.ftl", "java", "controller", "", "Controller.java"));
         voList.add(new FtlVO("htmllist.ftl", true, "webapp/pages", "", true, "", ".html"));
         voList.add(new FtlVO("htmladd.ftl", true, "webapp/pages", "", true, "", "_add.html"));
@@ -68,6 +69,6 @@ public class FtlFactory {
         voList.add(new FtlVO("jslist.ftl", true, "webapp/assets", "", true, "", ".js"));
         voList.add(new FtlVO("jsadd.ftl", true, "webapp/assets", "", true, "", "_add.js"));
         voList.add(new FtlVO("jsedit.ftl", true, "webapp/assets", "", true, "", "_edit.js"));
-        return new FtlVOSet(voList, inFtlConfig, "newfile");
+        return new FtlVOSet(voList, inFtlConfig, "newfile",1);
     }
 }

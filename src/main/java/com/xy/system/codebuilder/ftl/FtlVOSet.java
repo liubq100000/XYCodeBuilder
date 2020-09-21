@@ -13,10 +13,17 @@ public class FtlVOSet {
     private FtlPath nowConfig;
     public String subPath;
 
+    public Integer mode;
     public FtlVOSet(List<FtlVO> files, FtlPath ftlConfig, String inSubPath) {
+        this(files,ftlConfig,inSubPath,0);
+
+    }
+
+    public FtlVOSet(List<FtlVO> files, FtlPath ftlConfig, String inSubPath,Integer inMode) {
         this.files = files;
         this.nowConfig = ftlConfig;
         this.subPath = inSubPath;
+        this.mode = inMode;
     }
 
     public List<FtlVO> getFiles() {
@@ -49,5 +56,8 @@ public class FtlVOSet {
         }
     }
 
+    public Integer getMode() {
+        return mode;
+    }
 
 }
