@@ -28,12 +28,20 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
     /**
      * 点击查询按钮
      */
-    ${className}.search = function () {
+    ${className}.queryParams = function () {
         var queryData = {};
-        queryData['condition'] = $("#condition").val();
-        table.reload(${className}.tableId, {
-            where: queryData, page: {curr: 1}
-        });
+        var condObj = $("#condition").val();
+        if(condObj){
+            queryData['condition'] = condObj;
+        }
+        return queryData;
+    };
+
+    /**
+     * 点击查询按钮
+     */
+    ${className}.search = function () {
+        table.reload(${className}.tableId, {page: {curr: 1}});
     };
 
     /**
@@ -95,6 +103,9 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
     var tableResult = table.render({
         elem: '#' + ${className}.tableId,
         url: Feng.ctxPath + '/${className2}/list',
+        queryParams: function(){
+            return ${className}.queryParams();
+        },
         page: true,
         height: "full-158",
         cellMinWidth: 100,

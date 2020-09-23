@@ -75,8 +75,13 @@ public class ${className}Controller extends BaseController {
 	@RequestMapping("/addItem")
 	@ResponseBody
 	public ResponseData addItem(${className}Param param) {
-		this.${className2}Service.add(param);
-		return ResponseData.success();
+		try {
+			this.${className2}Service.add(param);
+			return ResponseData.success();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return ResponseData.error(ex.getMessage());
+		}
 	}
 
 	/**
@@ -88,8 +93,13 @@ public class ${className}Controller extends BaseController {
 	@RequestMapping("/editItem")
 	@ResponseBody
 	public ResponseData editItem(${className}Param param) {
-		this.${className2}Service.update(param);
-		return ResponseData.success();
+		try {
+			this.${className2}Service.update(param);
+			return ResponseData.success();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return ResponseData.error(ex.getMessage());
+		}
 	}
 
 	/**
@@ -101,8 +111,13 @@ public class ${className}Controller extends BaseController {
 	@RequestMapping("/delete")
 	@ResponseBody
 	public ResponseData delete(${className}Param param) {
-		this.${className2}Service.delete(param);
-		return ResponseData.success();
+		try {
+			this.${className2}Service.delete(param);
+			return ResponseData.success();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return ResponseData.error(ex.getMessage());
+		}
 	}
 
 	/**

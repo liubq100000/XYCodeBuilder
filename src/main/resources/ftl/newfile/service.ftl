@@ -13,11 +13,11 @@ import java.util.List;
  */
 public interface I${className}Service extends IService<${className}>{
 
-	void add(${className}Param param);
+	void add(${className}Param param)throws Exception;
 
-	void delete(${className}Param param);
+	void delete(${className}Param param)throws Exception;
 
-	void update(${className}Param param);
+	void update(${className}Param param)throws Exception;
 
 	${className}Result findBySpec(${className}Param param);
 

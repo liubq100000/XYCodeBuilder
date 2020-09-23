@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yx.base.pojo.page.LayuiPageFactory;
 import com.yx.base.pojo.page.LayuiPageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
@@ -21,18 +22,21 @@ import java.util.List;
 @Service
 public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${className}> implements I${className}Service {
 	@Override
-	public void add(${className}Param param) {
+	@Transactional(rollbackFor = Exception.class)
+	public void add(${className}Param param) throws Exception{
 		${className} entity = getEntity(param);
 		this.save(entity);
 	}
 
 	@Override
-	public void delete(${className}Param param) {
+	@Transactional(rollbackFor = Exception.class)
+	public void delete(${className}Param param) throws Exception{
 		this.removeById(getKey(param));
 	}
 
 	@Override
-	public void update(${className}Param param) {
+	@Transactional(rollbackFor = Exception.class)
+	public void update(${className}Param param) throws Exception{
 		${className} oldEntity = getOldEntity(param);
 		${className} newEntity = getEntity(param);
 		ToolUtil.copyProperties(newEntity, oldEntity);

@@ -1,7 +1,7 @@
 package ${packageName};
 
 import ${basePackage}.entity.${className};
-
+import java.io.Serializable;
 /**
  * @author liubq
  * @version 2020-07-10
