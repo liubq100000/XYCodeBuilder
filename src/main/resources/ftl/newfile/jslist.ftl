@@ -116,17 +116,18 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
     $('#btnSearch').click(function () {
         ${className}.search();
     });
-
+    // 重置按钮点击事件
+    $("#btnReset").click(function () {
+        $('#searchForm')[0].reset();
+    });
     // 添加按钮点击事件
     $('#btnAdd').click(function () {
         ${className}.openAddDlg();
     });
-
-    // 导出excel
+    // 导出按钮点击事件(Excel)
     $('#btnExp').click(function () {
         ${className}.exportExcel();
     });
-
     // 工具条点击事件
     table.on('tool(' + ${className}.tableId + ')', function (obj) {
         var data = obj.data;

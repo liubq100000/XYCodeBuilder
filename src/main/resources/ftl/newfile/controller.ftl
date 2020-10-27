@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.yx.modular.export.action.XyExportExcel;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -141,6 +141,7 @@ public class ${className}Controller extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/list")
+	@XyExportExcel
 	public LayuiPageInfo list(${className}Param param) {
 		return this.${className2}Service.findPageBySpec(param);
 	}

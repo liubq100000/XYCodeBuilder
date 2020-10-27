@@ -177,6 +177,7 @@ public class FtlServer {
         //Attribute里面封装模板使用属性
         List<Attribute> attrList = MetadataUtil.getTableColumnsInfo(nowVO, selectTableNow);
         PageAttribute nowItem;
+        String hasHeadId = "N";
         for (Attribute att : attrList) {
             nowItem = queryDataMap.get(att.getCamelName());
             if (nowItem != null) {
@@ -191,8 +192,12 @@ public class FtlServer {
                 att.setDicParentCode(nowItem.getDicParentCode());
             }
             att.setMode(templateSet.getMode());
+            if(att.getColumnName().equalsIgnoreCase("head_id")){
+                hasHeadId = "Y";
+            }
         }
         context.put("attrs", attrList);
+        context.put("hasHeadId", hasHeadId);
         //生成路径
         String savePath = ftlConfig.getOut() + "//" + System.currentTimeMillis();
         //轮询文件

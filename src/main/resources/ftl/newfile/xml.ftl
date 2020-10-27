@@ -30,6 +30,14 @@
 		</#if>
 		</#if>
 		</#list>
+		<#if hasHeadId=="Y">
+		<if test="paramCondition.headList != null">
+			and	t.head_id in
+			<foreach collection="paramCondition.headList" item="headValue" index="index" open="(" close=")" separator=",">
+				<#noparse>#{headValue}</#noparse>
+			</foreach>
+		</if>
+		</#if>
 		</where>
 	</sql>
 

@@ -22,6 +22,10 @@ public class ${className}Param extends ${className}Bean implements Serializable,
     </#if>
     </#if>
     </#list>
+    <#if hasHeadId=="Y">
+    //表头查询条件
+    private Long[] headList;
+    </#if>
     <#-- 循环生成set get方法 -->
     <#list attrs as attr>
     <#if (attr.busiItemType>0)>
@@ -44,5 +48,11 @@ public class ${className}Param extends ${className}Bean implements Serializable,
     </#if>
     </#if>
     </#list>
+    public Long[] getHeadList() {
+        return headList;
+    }
 
+    public void setHeadList(Long[] headList) {
+        this.headList = headList;
+    }
 }

@@ -11,14 +11,17 @@
 				<div class="layui-card-body">
 					<div class="layui-form toolbar">
 						<div class="layui-form-item">
+							<form id="searchForm">
 							<div class="layui-inline">
 								<input id="condition" class="layui-input" type="text" placeholder="名称"/>
 							</div>
 							<div class="layui-inline">
-								<button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
-								<button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
-								<button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+								<input type="button" id="btnSearch" class="layui-btn icon-btn" value="搜索" />
+								<input type="button" id="btnReset" class="layui-btn icon-btn" value="重置" />
+								<input type="button" id="btnAdd" class="layui-btn icon-btn" value="添加" />
+								<input type="button" id="btnExp" class="layui-btn icon-btn" value="导出" />
 							</div>
+							</form>
 						</div>
 					</div>
 					<table class="layui-table" id="${className2}Table" lay-filter="${className2}Table"></table>

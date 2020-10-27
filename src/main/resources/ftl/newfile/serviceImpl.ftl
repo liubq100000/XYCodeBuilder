@@ -13,6 +13,7 @@ import com.yx.base.pojo.page.LayuiPageFactory;
 import com.yx.base.pojo.page.LayuiPageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.yx.core.util.XyListUtil;
 
 import java.io.Serializable;
 import java.util.List;
@@ -30,17 +31,17 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void delete(${className}Param param) throws Exception{
-		this.removeById(getKey(param));
-	}
-
-	@Override
-	@Transactional(rollbackFor = Exception.class)
 	public void update(${className}Param param) throws Exception{
 		${className} oldEntity = getOldEntity(param);
 		${className} newEntity = getEntity(param);
 		ToolUtil.copyProperties(newEntity, oldEntity);
 		this.updateById(newEntity);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void delete(${className}Param param) throws Exception{
+		this.removeById(getKey(param));
 	}
 
 	@Override
@@ -51,6 +52,24 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
 		}
 		return list.get(0);
 	}
+
+	<#if hasHeadId=="Y">
+	@Override
+	public List<${className}Result> queryByHeadIds(String heads) {
+		Long[] ids = XyListUtil.toLongArr(heads);
+		if (ids.length == 0) {
+			return new ArrayList<>();
+		}
+		${className}Param cond = new ${className}Param();
+		cond.setHeadList(ids);
+		List<${className}Result> list = baseMapper.customList(cond);
+		if (list == null || list.size() == 0) {
+			return new ArrayList<>();
+		}
+		return list;
+	}
+	</#if>
+
 
 	@Override
 	public List<${className}Result> findListBySpec(${className}Param param) {
