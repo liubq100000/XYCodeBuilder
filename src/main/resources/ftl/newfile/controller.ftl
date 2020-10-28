@@ -39,7 +39,7 @@ public class ${className}Controller extends BaseController {
 	* @author
 	* @Date 2020-09-07
 	*/
-	@RequestMapping("")
+	@RequestMapping("/manage")
 	public String index() {
 		return PREFIX + "/${className2}.html";
 	}
@@ -141,7 +141,9 @@ public class ${className}Controller extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/list")
+	<#if hasHeadId=="N">
 	@XyExportExcel
+	</#if>
 	public LayuiPageInfo list(${className}Param param) {
 		return this.${className2}Service.findPageBySpec(param);
 	}

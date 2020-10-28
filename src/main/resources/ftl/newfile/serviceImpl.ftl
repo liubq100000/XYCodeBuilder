@@ -16,7 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yx.core.util.XyListUtil;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 /** 
  * @Version 1.0
  */
@@ -53,6 +56,15 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
 		return list.get(0);
 	}
 
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void updateData(${className}Param param) {
+		${className} oldEntity = getOldEntity(param);
+		${className} newEntity = getEntity(param);
+		ToolUtil.copyProperties(newEntity, oldEntity);
+		this.updateById(newEntity);
+	}
+
 	<#if hasHeadId=="Y">
 	@Override
 	public List<${className}Result> queryByHeadIds(String heads) {
@@ -67,6 +79,28 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
 			return new ArrayList<>();
 		}
 		return list;
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteByHeadIds(String heads) {
+		Long[] ids = XyListUtil.toLongArr(heads);
+		if (ids.length == 0) {
+			return;
+		}
+		for(Long headId : ids){
+			Map<String, Object> columnMap = new HashMap<>();
+			columnMap.put("head_id", headId);
+			this.removeByMap(columnMap);
+		}
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteByHeadId(Long headId) {
+		Map<String, Object> columnMap = new HashMap<>();
+		columnMap.put("head_id", headId);
+		this.removeByMap(columnMap);
 	}
 	</#if>
 

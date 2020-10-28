@@ -48,6 +48,7 @@ public class ${className}Param extends ${className}Bean implements Serializable,
     </#if>
     </#if>
     </#list>
+    <#if hasHeadId=="Y">
     public Long[] getHeadList() {
         return headList;
     }
@@ -55,4 +56,5 @@ public class ${className}Param extends ${className}Bean implements Serializable,
     public void setHeadList(Long[] headList) {
         this.headList = headList;
     }
+    </#if>
 }

@@ -25,7 +25,13 @@ public interface I${className}Service extends IService<${className}>{
 
 	LayuiPageInfo findPageBySpec(${className}Param param);
 
+	void updateData(${className}Param param);
+
 	<#if hasHeadId=="Y">
-	${className}Result queryByHeadIds(String headId);
+	void deleteByHeadId(Long headId);
+
+	void deleteByHeadIds(String headId);
+
+	List<${className}Result> queryByHeadIds(String headId);
 	</#if>
 }
