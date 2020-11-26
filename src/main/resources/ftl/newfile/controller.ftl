@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.yx.modular.export.action.XyExportExcel;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -52,7 +51,7 @@ public class ${className}Controller extends BaseController {
 	 */
 	@RequestMapping("/add")
 	public String add() {
-		return PREFIX + "/${className2}_add.html";
+		return PREFIX + "/${className2}Form.html";
 	}
 
 	/**
@@ -63,7 +62,7 @@ public class ${className}Controller extends BaseController {
 	 */
 	@RequestMapping("/edit")
 	public String edit() {
-		return PREFIX + "/${className2}_edit.html";
+		return PREFIX + "/${className2}Form.html";
 	}
 
 	/**
@@ -141,9 +140,6 @@ public class ${className}Controller extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/list")
-	<#if hasHeadId=="N">
-	@XyExportExcel
-	</#if>
 	public LayuiPageInfo list(${className}Param param) {
 		return this.${className2}Service.findPageBySpec(param);
 	}

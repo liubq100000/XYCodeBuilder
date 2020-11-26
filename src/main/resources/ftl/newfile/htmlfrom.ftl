@@ -1,12 +1,12 @@
-@layout("/common/_container.html",{js:["/assets/${modulePath}/${minPath}/${className2}_edit.js"]}){
+@layout("/common/_container.html",{js:["/assets/${modulePath}/${minPath}/${className2}Form.js"]}){
 
 <form class="layui-form" id="${className2}Form" lay-filter="${className2}Form">
-	<div class="layui-fluid" style="padding-bottom: 75px;">
+	<input type="hidden" id="id" name="id"  />
+	<div class="layui-fluid" style="padding-bottom: 15px;">
 		<div class="layui-card">
 			<div class="layui-card-header">基本信息</div>
 			<div class="layui-card-body">
 				<div class="layui-form-item layui-row">
-					<input type="hidden" id="id" name="id"  />
 					<#list formRowList as formRowItem>
 					<#list formRowItem.rowList as formItem>
 					<div class="layui-inline layui-col-md12">

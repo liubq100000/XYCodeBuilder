@@ -50,6 +50,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
     ${className}.openAddDlg = function () {
         func.open({
             title: '添加',
+            height: '420',
             content: Feng.ctxPath + '/${className2}/add',
             tableId: ${className}.tableId
         });
@@ -61,8 +62,9 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
      * @param data 点击按钮时候的行数据
      */
     ${className}.openEditDlg = function (data) {
-        func.open({
+        func.openEx({
             title: '修改',
+            height: '420',
             content: Feng.ctxPath + '/${className2}/edit?id=' + data.id,
             tableId: ${className}.tableId
         });
@@ -107,7 +109,8 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
             return ${className}.queryParams();
         },
         page: true,
-        height: "full-158",
+        limit:20,
+        height: "full-98",
         cellMinWidth: 100,
         cols: ${className}.initColumn()
     });
