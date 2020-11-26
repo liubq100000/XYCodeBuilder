@@ -70,21 +70,35 @@
         <input type="hidden" id="selectId" name="selectId" th:value="${selectId}">
         <input type="hidden" id="selectTableNow" name="selectTableNow" th:value="${selectTableNow}">
 
-        <div class="mytitle" style="font-size:20px;font-weight: bold;">
-            <table style="text-align:center">
+        <div class="mytitle" style="font-size:20px;font-weight: bold;padding-top: 50px;">
+            <table style="text-align:center;width:100%;">
+                <tr>
+                    <td style="width:10%;">
+                        存储表名：
+                    </td>
+                    <td align="left" style="text-align:left">
+                        <input type="text"  th:value="${selectTableNow}"  disabled="disabled" style="width:99.3%;">
+                    </td>
+                    <td style="width:10%;" >
+                        功能名称：
+                    </td>
+                    <td align="left" style="text-align:left">
+                        <input type="text" id="selectProjectName" name="selectProjectName" value="功能" style="width:99.3%;">
+                    </td>
+                </tr>
                 <tr>
                     <td>
-                        存储表名：<input type="text"  th:value="${selectTableNow}"  disabled="disabled">
+                        代码路径：
                     </td>
-                    <td>
-                        <span style='color:#F00;font-weight: bold'>功能名称：</span><input type="text" id="selectProjectName" name="selectProjectName" value="测试功能">
-                    </td>
-                    <td>
-                        <span style='color:#F00;font-weight: bold'>代码路径：</span><input type="text" id="selectTableBaseDir" name="selectTableBaseDir" value="com.yx.modular.xx.project"  >
+                    <td align="left" style="text-align:left">
+                        <input type="text" id="selectTableBaseDir" name="selectTableBaseDir" value="com.yx.modular.xx.project"   style="width:99.3%;">
                     </td>
                     <td>
                         功能类型：
-                        <select id="selectMode" name="selectMode" style="width:180px;">
+                    </td>
+                    <td align="left" style="text-align:left">
+
+                        <select id="selectMode" name="selectMode" style="width:100%;">
                             <option value="NewFile">新普通单据</option>
                             <option value="Normal">旧普通单据</option>
                             <option value="WorkFlow">旧工作流单据</option>
@@ -95,11 +109,11 @@
         </div>
         <br>
         <div class="layui-form-item">
-            <div class="layui-input-block" style="margin-left: 0px;text-align:center">
+            <div class="layui-input-block" style="margin-left: 0px;text-align:center;padding-top: 90px;">
                 <button class="layui-btn"  lay-submit="" lay-filter="selectTableSubmit" onclick="codeAssemblyFun.save()">&nbsp;生&nbsp;&nbsp;&nbsp;&nbsp;成&nbsp;</button>
             </div>
         </div>
-        <div class="wrap">
+        <div class="wrap" style="display: none">
             <div class="nav">
                 <a id="li1" onclick="selectTab('listQueryTabDiv','li1')" class="active">查询区域</a>
                 <a id="li2" onclick="selectTab('listTabDiv','li2')">列表区域</a>

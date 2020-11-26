@@ -322,7 +322,7 @@ codeAssemblyFun.save = function () {
         layer.alert("请在表单输入字典编码信息");
         return;
     }
-    console.log(formData)
+    //console.log(formData)
 
     var listData = [];
     sortNow = 0;
@@ -340,7 +340,7 @@ codeAssemblyFun.save = function () {
         };
         listData[listData.length] = itemData;
     })
-    console.log(listData)
+    //console.log(listData)
 
     var queryData = [];
     sortNow = 0;
@@ -362,7 +362,7 @@ codeAssemblyFun.save = function () {
         };
         queryData[queryData.length] = itemData;
     })
-    console.log(queryData)
+    //console.log(queryData)
     var selectTableNow = $("#selectTableNow").val();
     var selectMode = $("#selectMode").val();
     var selectProjectName = $("#selectProjectName").val();
@@ -390,8 +390,8 @@ codeAssemblyFun.save = function () {
         },
         url: "/code/build?n_=" + (new Date().getTime()),
         success: function (data) {
-            // window.location.href = "/code/down";
-            // layer.alert("生成成功");
+            window.location.href = "/code/down";
+            layer.alert("生成成功");
         }
     });
 

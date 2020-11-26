@@ -23,6 +23,7 @@ $(function () {
 var getMenus = function (data) {
     //回显选中
     var ul = $("<ul class='layui-nav layui-nav-tree' lay-filter='test'></ul>");
+    var firstIndex = 0;
     for (var i = 0; i < data.length; i++) {
         var node = data[i];
         var li = $("<li class='layui-nav-item' flag='" + node.id + "'></li>");
@@ -37,7 +38,7 @@ var getMenus = function (data) {
             a.append("<span class='layui-nav-more'></span>");
             var dl = $("<dl class='layui-nav-child'></dl>");
             for (var y in childArry) {
-                var dd = $("<dd><a href='" + childArry[y].url + "' target='mainFrame' >" + childArry[y].name + "</a></dd>");
+                var dd = $("<dd><a href='" + childArry[y].url + "' target='mainFrame' id='menu_" + (firstIndex++) + "'>" + childArry[y].name + "</a></dd>");
                 //判断选中状态
                 if (pathUri.indexOf(childArry[y].url) > 0) {
                     li.addClass("layui-nav-itemed");
@@ -49,8 +50,10 @@ var getMenus = function (data) {
         }
         ul.append(li);
     }
+
     $(".layui-side-scroll").append(ul);
-}
+
+};
 //根据菜单主键id获取下级菜单
 //id：菜单主键id
 //arry：菜单数组信息

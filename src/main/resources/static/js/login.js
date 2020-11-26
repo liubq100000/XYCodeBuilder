@@ -22,7 +22,6 @@ var lastUsername;
 var lastPassword;
 
 function login() {
-    debugger
     var username = $("#username").val();
     var password = $("#password").val();
     //没有变化就退出
