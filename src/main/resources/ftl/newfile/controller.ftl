@@ -6,8 +6,8 @@ import cn.stylefeng.roses.kernel.model.response.ResponseData;
 import com.yx.base.pojo.page.LayuiPageInfo;
 
 import ${basePackage}.entity.${className};
-import ${basePackage}.model.${className}Param;
-import ${basePackage}.model.${className}Result;
+import ${basePackage}.model.${className}Bean;
+import ${basePackage}.model.${className}Bean;
 import ${basePackage}.service.I${className}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -73,7 +73,7 @@ public class ${className}Controller extends BaseController {
 	 */
 	@RequestMapping("/addItem")
 	@ResponseBody
-	public ResponseData addItem(${className}Param param) {
+	public ResponseData addItem(${className}Bean param) {
 		try {
 			this.${className2}Service.add(param);
 			return ResponseData.success();
@@ -91,7 +91,7 @@ public class ${className}Controller extends BaseController {
 	 */
 	@RequestMapping("/editItem")
 	@ResponseBody
-	public ResponseData editItem(${className}Param param) {
+	public ResponseData editItem(${className}Bean param) {
 		try {
 			this.${className2}Service.update(param);
 			return ResponseData.success();
@@ -109,7 +109,7 @@ public class ${className}Controller extends BaseController {
 	 */
 	@RequestMapping("/delete")
 	@ResponseBody
-	public ResponseData delete(${className}Param param) {
+	public ResponseData delete(${className}Bean param) {
 		try {
 			this.${className2}Service.delete(param);
 			return ResponseData.success();
@@ -127,7 +127,7 @@ public class ${className}Controller extends BaseController {
 	 */
 	@RequestMapping("/detail")
 	@ResponseBody
-	public ResponseData detail(${className}Param param) {
+	public ResponseData detail(${className}Bean param) {
 		${className} detail = this.${className2}Service.getById(param.getId());
 		return ResponseData.success(detail);
 	}
@@ -140,7 +140,7 @@ public class ${className}Controller extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/list")
-	public LayuiPageInfo list(${className}Param param) {
+	public LayuiPageInfo list(${className}Bean param) {
 		return this.${className2}Service.findPageBySpec(param);
 	}
 

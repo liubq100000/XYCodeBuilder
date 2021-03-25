@@ -91,6 +91,21 @@ public class DataSourceController {
         logger.info("设置[新增或更新]！user:" + cond);
         Map<String,Object> data = new HashMap<>();
         int res;
+        //jdbc:mysql://192.168.0.244:3308/hrms?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
+        String url = cond.getUrl();
+        String newUrl = url.replaceAll("\\\\","/");
+        cond.setUrl(newUrl);
+        int end = newUrl.indexOf("?");
+        if(end<0){
+            throw new RuntimeException("url错误");
+        }
+        String tempUrl = newUrl.substring(0,end);
+        int begin = tempUrl.lastIndexOf("/");
+        if(begin<0){
+            throw new RuntimeException("url错误");
+        }
+        String name = tempUrl.substring(begin + 1).trim();
+        cond.setDbName(name);
         if(cond.getId() == null){
             res = billService.addData(cond);
         }else{

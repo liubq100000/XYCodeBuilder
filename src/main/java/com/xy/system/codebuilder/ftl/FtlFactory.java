@@ -10,6 +10,8 @@ public class FtlFactory {
             return getWorkFlowFileList(inFtlConfig);
         } else if("NewFile".equalsIgnoreCase(selectMode)){
             return getNewFileList(inFtlConfig);
+        }  else if("NewWfFile".equalsIgnoreCase(selectMode)){
+            return getNewWfFileList(inFtlConfig);
         } else {
             return getNormalFileList(inFtlConfig);
         }
@@ -57,8 +59,6 @@ public class FtlFactory {
         voList.add(new FtlVO("xml.ftl", "java", "mapper/mapping", "", "Mapper.xml"));
         voList.add(new FtlVO("domain.ftl", "java", "entity", "", ".java"));
         voList.add(new FtlVO("bean.ftl", "java", "model", "", "Bean.java"));
-        voList.add(new FtlVO("param.ftl", "java", "model", "", "Param.java"));
-        voList.add(new FtlVO("result.ftl", "java", "model", "", "Result.java"));
         voList.add(new FtlVO("service.ftl", "java", "service", "I", "Service.java"));
         voList.add(new FtlVO("serviceImpl.ftl", "java", "service/impl", "", "ServiceImpl.java"));
         voList.add(new FtlVO("mapper.ftl", "java", "mapper", "", "Mapper.java"));
@@ -68,5 +68,20 @@ public class FtlFactory {
         voList.add(new FtlVO("jslist.ftl", true, "webapp/assets", "", true, "", ".js"));
         voList.add(new FtlVO("jsform.ftl", true, "webapp/assets", "", true, "", "Form.js"));
         return new FtlVOSet(voList, inFtlConfig, "newfile",1);
+    }
+
+
+    private static FtlVOSet getNewWfFileList(final FtlPath inFtlConfig) {
+        List<FtlVO> voList = new ArrayList<>();
+        voList.add(new FtlVO("xml.ftl", "java", "mapper/mapping", "", "Mapper.xml"));
+        voList.add(new FtlVO("domain.ftl", "java", "entity", "", ".java"));
+        voList.add(new FtlVO("bean.ftl", "java", "model", "", "Bean.java"));
+        voList.add(new FtlVO("service.ftl", "java", "service", "I", "Service.java"));
+        voList.add(new FtlVO("serviceImpl.ftl", "java", "service/impl", "", "ServiceImpl.java"));
+        voList.add(new FtlVO("mapper.ftl", "java", "mapper", "", "Mapper.java"));
+        voList.add(new FtlVO("controller.ftl", "java", "controller", "", "Controller.java"));
+        voList.add(new FtlVO("htmlfrom.ftl", true, "webapp/pages", "", true, "", "_form.html"));
+        voList.add(new FtlVO("jsform.ftl", true, "webapp/assets", "", true, "", "_form.js"));
+        return new FtlVOSet(voList, inFtlConfig, "newwffile",1);
     }
 }

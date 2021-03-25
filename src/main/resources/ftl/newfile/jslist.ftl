@@ -5,16 +5,12 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
     var admin = layui.admin;
     var func = layui.func;
 
-    /**
-     * 管理
-     */
+    //管理
     var ${className} = {
         tableId: "${className2}Table"
     };
 
-    /**
-     * 初始化表格的列
-     */
+    //初始化表格的列
     ${className}.initColumn = function () {
         return [[
             {type: 'checkbox'},
@@ -25,9 +21,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
         ]];
     };
 
-    /**
-     * 点击查询按钮
-     */
+    //点击查询按钮
     ${className}.queryParams = function () {
         var queryData = {};
         var condObj = $("#condition").val();
@@ -37,16 +31,12 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
         return queryData;
     };
 
-    /**
-     * 点击查询按钮
-     */
+    //点击查询按钮
     ${className}.search = function () {
         table.reload(${className}.tableId, {page: {curr: 1}});
     };
 
-    /**
-     * 弹出添加对话框
-     */
+    //弹出添加对话框
     ${className}.openAddDlg = function () {
         func.open({
             title: '添加',
@@ -56,11 +46,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
         });
     };
 
-    /**
-     * 点击编辑
-     *
-     * @param data 点击按钮时候的行数据
-     */
+    //点击编辑
     ${className}.openEditDlg = function (data) {
         func.openEx({
             title: '修改',
@@ -70,23 +56,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
         });
     };
 
-    /**
-     * 导出excel按钮
-     */
-    ${className}.exportExcel = function () {
-        var checkRows = table.checkStatus(${className}.tableId);
-        if (checkRows.data.length === 0) {
-            Feng.error("请选择要导出的数据");
-        } else {
-            table.exportFile(tableResult.config.id, checkRows.data, 'xls');
-        }
-    };
-
-    /**
-     * 点击删除
-     *
-     * @param data 点击按钮时候的行数据
-     */
+    //点击删除
     ${className}.onDeleteItem = function (data) {
         var operation = function () {
         var ajax = new $ax(Feng.ctxPath + "/${className2}/delete", function (data) {
@@ -126,10 +96,6 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
     // 添加按钮点击事件
     $('#btnAdd').click(function () {
         ${className}.openAddDlg();
-    });
-    // 导出按钮点击事件(Excel)
-    $('#btnExp').click(function () {
-        ${className}.exportExcel();
     });
     // 工具条点击事件
     table.on('tool(' + ${className}.tableId + ')', function (obj) {

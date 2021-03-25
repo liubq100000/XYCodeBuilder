@@ -13,6 +13,8 @@ import com.yx.base.pojo.page.LayuiPageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.yx.core.util.XyListUtil;
+import com.yx.workflow.instance.service.IInstanceService;
+import com.yx.workflow.task.service.ITaskService;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,18 +26,36 @@ import java.util.Map;
  */
 @Service
 public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${className}> implements I${className}Service {
+
+	@Autowired
+	IInstanceService instanceService;
+	@Autowired
+	ITaskService taskService;
+
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void add(${className}Bean param) throws Exception{
 		${className} entity = getEntity(param);
 		this.save(entity);
+		//保存工作流
+		Map<String, Object> resultMap = instanceService.startProcess(param.getWorkflowBean());
+		if (resultMap.get("code") != null && !resultMap.get("code").toString().equals("0")) {
+			throw new Exception("工作流保存失败，编码："+resultMap.get("code"))
+		}
 	}
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void update(${className}Bean param) throws Exception{
+		${className} oldEntity = getOldEntity(param);
 		${className} newEntity = getEntity(param);
+		ToolUtil.copyProperties(newEntity, oldEntity);
 		this.updateById(newEntity);
+		param.getWorkflowBean().setBusiness_Key_(param.getPiId());
+		Map<String,Object> resultMap = taskService.excute(param.getWorkflowBean());
+		if (resultMap.get("code") != null && !resultMap.get("code").toString().equals("0")) {
+			throw new Exception("工作流保存失败，编码："+resultMap.get("code"))
+		}
 	}
 
 	@Override
@@ -56,7 +76,9 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void updateData(${className}Bean param) {
+		${className} oldEntity = getOldEntity(param);
 		${className} newEntity = getEntity(param);
+		ToolUtil.copyProperties(newEntity, oldEntity);
 		this.updateById(newEntity);
 	}
 
@@ -118,6 +140,10 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
 
 	private Page getPageContext() {
 		return LayuiPageFactory.defaultPage();
+	}
+
+	private ${className} getOldEntity(${className}Bean param) {
+		return this.getById(getKey(param));
 	}
 
 	private ${className} getEntity(${className}Bean param) {

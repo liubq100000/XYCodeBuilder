@@ -178,6 +178,7 @@ public class FtlServer {
         List<Attribute> attrList = MetadataUtil.getTableColumnsInfo(nowVO, selectTableNow);
         PageAttribute nowItem;
         String hasHeadId = "N";
+        String hasUserId = "N";
         for (Attribute att : attrList) {
             nowItem = queryDataMap.get(att.getCamelName());
             if (nowItem != null) {
@@ -195,9 +196,13 @@ public class FtlServer {
             if(att.getColumnName().equalsIgnoreCase("head_id")){
                 hasHeadId = "Y";
             }
+            if(att.getColumnName().equalsIgnoreCase("user_id")){
+                hasUserId = "Y";
+            }
         }
         context.put("attrs", attrList);
         context.put("hasHeadId", hasHeadId);
+        context.put("hasUserId", hasUserId);
         //生成路径
         String savePath = ftlConfig.getOut() + "//" + System.currentTimeMillis();
         //轮询文件

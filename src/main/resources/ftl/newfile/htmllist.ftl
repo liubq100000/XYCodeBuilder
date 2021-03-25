@@ -1,7 +1,7 @@
 @layout("/common/_container.html",{js:["/assets/${modulePath}/${minPath}/${className2}.js"]}){
 
 <div class="layui-body-header">
-	<span class="layui-body-header-title">管理</span>
+	<span class="layui-body-header-title">基本信息</span>
 </div>
 
 <div class="layui-fluid">
@@ -19,7 +19,6 @@
 								<input type="button" id="btnSearch" class="layui-btn icon-btn" value="搜索" />
 								<input type="button" id="btnReset" class="layui-btn icon-btn" value="重置" />
 								<input type="button" id="btnAdd" class="layui-btn icon-btn" value="添加" />
-								<input type="button" id="btnExp" class="layui-btn icon-btn" value="导出" />
 							</div>
 							</form>
 						</div>

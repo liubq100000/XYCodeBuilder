@@ -3,6 +3,16 @@
        xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head th:include="layout :: htmlhead" th:with="title='用户管理'"></head>
 <body class="layui-layout-body">
+<style>
+    .layui-col-md6 {
+        width: 50%;
+        padding: 1px;
+    }
+    .layui-col-md12 {
+        width: 100%;
+        padding: 1px;
+    }
+</style>
 <div class="layui-layout layui-layout-admin">
     <!--头-->
     <div th:replace="fragments/head :: header"></div>
@@ -28,45 +38,35 @@
         <form id="dataSourceForm" class="layui-form layui-form-pane" method="post" action="" style="margin-top: 20px;">
             <input id="pageNum" type="hidden" name="pageNum"/>
             <input id="id" type="hidden" name="id"/>
-            <div class="layui-form-item">
+            <input id="dbType" type="hidden" name="dbType" value="mysql"/>
+            <div class="layui-inline layui-col-md12">
                 <label class="layui-form-label">名称</label>
-                <div class="layui-input-inline" style="width:80%;">
+                <div class="layui-input-block">
                     <input id="txt" name="txt" lay-verify="required" autocomplete="off" class="layui-input" type="text"/>
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">类型</label>
-                <div class="layui-input-inline"  style="width:80%;">
-                    <select name="dbType"  id="dbType" style="width:100%;">
-                        <OPTION VALUE="mysql">mysql</OPTION>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">数据库</label>
-                <div class="layui-input-inline"  style="width:80%;">
-                    <input id="dbName" name="dbName" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
-                </div>
-            </div>
-            <div class="layui-form-item">
+
+            <div class="layui-inline layui-col-md12">
                 <label class="layui-form-label">地址</label>
-                <div class="layui-input-inline"  style="width:80%;">
+                <div class="layui-input-block">
                     <input id="url" name="url" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
                 </div>
             </div>
-            <div class="layui-form-item">
+
+            <div class="layui-inline layui-col-md6">
                 <label class="layui-form-label">用户名</label>
-                <div class="layui-input-inline"  style="width:80%;">
+                <div class="layui-input-block">
                     <input id="username" name="username" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
                 </div>
             </div>
-            <div class="layui-form-item">
+            <div class="layui-inline layui-col-md6">
                 <label class="layui-form-label">密码</label>
-                <div class="layui-input-inline"  style="width:80%;">
+                <div class="layui-input-block">
                     <input id="password" name="password" lay-verify="required" autocomplete="off" class="layui-input" type="text" />
                 </div>
             </div>
-            <div class="layui-form-item">
+
+            <div class="layui-form-item" style="padding-top: 10px;padding-bottom: 10px;">
                 <div class="layui-input-block" style="margin-left: 0px;text-align:center">
                     <button class="layui-btn"  lay-submit="" lay-filter="dataSourceSubmit">保 存</button>
                 </div>
