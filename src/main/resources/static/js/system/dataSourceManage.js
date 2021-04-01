@@ -59,7 +59,6 @@ $(function () {
             formSubmit(data);
             return false;
         });
-
         //生成代码
         form.on('submit(selectTableSubmit)', function (data) {
             // TODO 校验
