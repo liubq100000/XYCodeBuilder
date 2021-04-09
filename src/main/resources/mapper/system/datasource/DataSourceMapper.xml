@@ -32,20 +32,20 @@
   </delete>
 
   <insert id="insertData" parameterType="com.xy.system.codebuilder.domain.DataSourceVO">
-    INSERT INTO busi_data_source(id,txt,db_type,url,username,password)
-			VALUES (#{id},#{txt},#{dbType},#{url},#{username},#{password})
+    INSERT INTO busi_data_source(id,txt,db_type,url,db_name,username,password)
+		VALUES (#{id},#{txt},#{dbType},#{url},#{dbName},#{username},#{password})
   </insert>
 
   <select id="findList" resultType="com.xy.system.codebuilder.domain.DataSourceVO"  parameterType="com.xy.system.codebuilder.domain.DataSourceVO">
     select
-    u.id,
-    u.txt,
-    u.db_type as dbType,
-    u.db_name as dbName,
-    u.url,
-    u.username,
-    u.password
-    FROM busi_data_source as u
+    u.id        as id,
+    u.txt       as txt,
+    u.db_type   as dbType,
+    u.db_name   as dbName,
+    u.url       as url,
+    u.username  as username,
+    u.password  as password
+    FROM busi_data_source u
     <where>
         <if test="id != null and id != '' ">
           and id  = #{id}
@@ -72,13 +72,13 @@
   </select>
     <select id="queryOne" resultType="com.xy.system.codebuilder.domain.DataSourceVO"  parameterType="com.xy.system.codebuilder.domain.DataSourceVO">
         select
-        u.id,
-        u.txt,
-        u.db_type as dbType,
-        u.db_name as dbName,
-        u.url,
-        u.username,
-        u.password
+        u.id        as id,
+        u.txt       as txt,
+        u.db_type   as dbType,
+        u.db_name   as dbName,
+        u.url       as url,
+        u.username  as username,
+        u.password  as password
         FROM busi_data_source as u
         <where>
             <if test="id != null and id != '' ">
