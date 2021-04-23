@@ -53,13 +53,6 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
 		return list.get(0);
 	}
 
-	@Override
-	@Transactional(rollbackFor = Exception.class)
-	public void updateData(${className}Bean param) {
-		${className} newEntity = getEntity(param);
-		this.updateById(newEntity);
-	}
-
 	<#if hasHeadId=="Y">
 	@Override
 	public List<${className}Bean> queryByHeadIds(String heads) {

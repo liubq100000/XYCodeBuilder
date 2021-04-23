@@ -100,7 +100,7 @@ public class JavaNameUtil {
      */
     public static String translate(String unberscoreNameIn, boolean isPascal) {
         StringBuilder result = new StringBuilder();
-        String unberscoreName = unberscoreNameIn.toLowerCase();
+        String unberscoreName = unberscoreNameIn;
         //从第一个字母
         if (unberscoreName != null && unberscoreName.length() != 0) {
             boolean flag = false;
@@ -108,22 +108,27 @@ public class JavaNameUtil {
             if (isPascal) {
                 result.append(Character.toUpperCase(firstChar));
             } else {
-                result.append(firstChar);
+                result.append(Character.toLowerCase(firstChar));
             }
-            //从第二个字母以后开始
-            for (int i = 1, length = unberscoreName.length(); i < length; i++) {
-                char ch = unberscoreName.charAt(i);
-                if ('_' == ch) {
-                    flag = true;
-                } else {
-                    if (flag) { //标记上一个是下划线，就转化为大写。
-                        result.append(Character.toUpperCase(ch));
-                        flag = false;
+            if(unberscoreName.indexOf("_")>0){
+                //从第二个字母以后开始
+                for (int i = 1, length = unberscoreName.length(); i < length; i++) {
+                    char ch = unberscoreName.charAt(i);
+                    if ('_' == ch) {
+                        flag = true;
                     } else {
-                        result.append(ch);
+                        if (flag) { //标记上一个是下划线，就转化为大写。
+                            result.append(Character.toUpperCase(ch));
+                            flag = false;
+                        } else {
+                            result.append(ch);
+                        }
                     }
                 }
+            } else {
+                result.append(unberscoreName.substring(1));
             }
+
         }
         return result.toString();
     }

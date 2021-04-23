@@ -1,4 +1,4 @@
-@layout("/common/_container.html",{js:["/assets/${modulePath}/${minPath}/${className2}.js"]}){
+@layout("/common/_containerEx.html",{js:["/assets/${modulePath}/${minPath}/${className2}.js"]}){
 
 <div class="layui-body-header">
 	<span class="layui-body-header-title">基本信息</span>
@@ -13,7 +13,7 @@
 						<div class="layui-form-item">
 							<form id="searchForm">
 							<div class="layui-inline">
-								<input id="condition" class="layui-input" type="text" placeholder="名称"/>
+								<input id="query_name" class="layui-input" type="text" placeholder="名称"/>
 							</div>
 							<div class="layui-inline">
 								<input type="button" id="btnSearch" class="layui-btn icon-btn" value="搜索" />
@@ -31,6 +31,7 @@
 </div>
 
 <script type="text/html" id="tableBar">
+	<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="view">查看</a>
 	<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
 </script>

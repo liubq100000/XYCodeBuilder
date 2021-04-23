@@ -24,8 +24,6 @@ public interface I${className}Service extends IService<${className}>{
 
 	LayuiPageInfo findPageBySpec(${className}Bean param);
 
-	void updateData(${className}Bean param);
-
 	<#if hasHeadId=="Y">
 	void deleteByHeadId(Long headId);
 

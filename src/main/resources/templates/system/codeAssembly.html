@@ -77,7 +77,7 @@
                         存储表名：
                     </td>
                     <td align="left" style="text-align:left">
-                        <input type="text"  th:value="${selectTableNow}"  disabled="disabled" style="width:99.3%;">
+                        <input type="text"  th:value="${selectTableNow}" id="selectTableNowValue" disabled="disabled" style="width:99.3%;">
                     </td>
                     <td style="width:10%;" >
                         功能名称：
@@ -91,7 +91,7 @@
                         代码路径：
                     </td>
                     <td align="left" style="text-align:left">
-                        <input type="text" id="selectTableBaseDir" name="selectTableBaseDir" value="com.yx.modular.xx.project"   style="width:99.3%;">
+                        <input type="text" id="selectTableBaseDir" name="selectTableBaseDir" value=""   style="width:99.3%;">
                     </td>
                     <td>
                         功能类型：
@@ -100,7 +100,6 @@
 
                         <select id="selectMode" name="selectMode" style="width:100%;">
                             <option value="NewFile">新普通单据</option>
-                            <option value="NewWfFile">新流程单据</option>
                             <option value="Normal">旧普通单据</option>
                             <option value="WorkFlow">旧工作流单据</option>
                         </select>
@@ -108,13 +107,7 @@
                 </tr>
             </table>
         </div>
-        <br>
-        <div class="layui-form-item">
-            <div class="layui-input-block" style="margin-left: 0px;text-align:center;padding-top: 90px;">
-                <button class="layui-btn"  lay-submit="" lay-filter="selectTableSubmit" onclick="codeAssemblyFun.save()">&nbsp;生&nbsp;&nbsp;&nbsp;&nbsp;成&nbsp;</button>
-            </div>
-        </div>
-        <div class="wrap" style="display: none">
+        <div class="wrap" style="width:100%; display: none">
             <div class="nav">
                 <a id="li1" onclick="selectTab('listQueryTabDiv','li1')" class="active">查询区域</a>
                 <a id="li2" onclick="selectTab('listTabDiv','li2')">列表区域</a>
@@ -139,6 +132,11 @@
 
             </div>
 
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 0px;text-align:center;padding-top: 30px;">
+                <button class="layui-btn"  lay-submit="" lay-filter="selectTableSubmit" onclick="codeAssemblyFun.save()">&nbsp;生&nbsp;&nbsp;&nbsp;&nbsp;成&nbsp;</button>
+            </div>
         </div>
     </div>
     <!--底部-->

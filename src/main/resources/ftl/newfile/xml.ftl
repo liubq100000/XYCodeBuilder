@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="${basePackage}.mapper.${className}Mapper">
 	<sql id="Base_Column_List" ><#list attrs as attr><#if (attr_index>0)>,</#if>
-		t.${attr.columnName} ${attr.camelName}</#list>
+		t.${attr.columnName} AS ${attr.camelName}</#list>
 	</sql>
 
 	<sql id="Base_Query_Where" >

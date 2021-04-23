@@ -5,8 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.alibaba.fastjson.annotation.JSONField;
-import com.yx.sys.core.filter.YxBaseBean;
+import com.yx.base.bean.BaseBean;
 import java.util.Date;
+import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
 /**
@@ -14,7 +15,8 @@ import java.math.BigDecimal;
  * @version 2020-07-10
  */
 @TableName("${tableName}")
-public class ${className} extends YxBaseBean implements Serializable {
+@Data
+public class ${className} extends BaseBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,28 +28,11 @@ public class ${className} extends YxBaseBean implements Serializable {
 	private ${attr.type} ${attr.camelName};
 	<#else>
 	//${attr.label}
+	<#if attr.typeName?contains("Date")>
+	@JSONField(format = "yyyy-MM-dd")
+	</#if>
 	@TableField("${attr.columnName}")
 	private ${attr.type} ${attr.camelName};
-	</#if>
-	</#list>
-
-	<#-- 循环生成set get方法 -->
-	<#list attrs as attr>
-	<#if attr.typeName?contains("Date")>
-	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
-		this.${attr.camelName} = ${attr.camelName};
-	}
-	@JSONField(format = "yyyy-MM-dd")
-	public ${attr.type} get${attr.pascalName}() {
-		return ${attr.camelName};
-	}
-	<#else>
-	public void set${attr.pascalName}(${attr.type} ${attr.camelName}) {
-		this.${attr.camelName} = ${attr.camelName};
-	}
-	public ${attr.type} get${attr.pascalName}() {
-		return ${attr.camelName};
-	}
 	</#if>
 	</#list>
 }

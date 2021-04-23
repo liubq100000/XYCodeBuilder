@@ -4,11 +4,12 @@ import ${basePackage}.entity.${className};
 import com.yx.core.util.YxDateUtil;
 import java.io.Serializable;
 import java.util.Date;
-
+import lombok.Data;
 /**
  * @author liubq
  * @version 2020-07-10
  */
+@Data
 public class ${className}Bean extends ${className} implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,38 +41,13 @@ public class ${className}Bean extends ${className} implements Serializable {
     public void set${attr.pascalName}Begin(${attr.type} ${attr.camelName}Begin) {
         this.${attr.camelName}Begin = ${attr.camelName}Begin;
     }
-    public ${attr.type} get${attr.pascalName}Begin() {
-        return ${attr.camelName}Begin;
-    }
     public void set${attr.pascalName}End(${attr.type} ${attr.camelName}End) {
         if(${attr.camelName}End == null){
             return;
         }
         this.${attr.camelName}End = YxDateUtil.fillTime(${attr.camelName}End);
     }
-    public ${attr.type} get${attr.pascalName}End() {
-        return ${attr.camelName}End;
-    }
     </#if>
     </#if>
     </#list>
-    <#if hasHeadId=="Y">
-    public Long[] getHeadIdList() {
-        return headIdList;
-    }
-
-    public void setHeadIdList(Long[] headIdList) {
-        this.headIdList = headIdList;
-    }
-    </#if>
-
-    <#if hasUserId=="Y">
-    public Long[] getUserIdList() {
-        return userIdList;
-    }
-
-    public void setUserIdList(Long[] userIdList) {
-        this.userIdList = userIdList;
-    }
-    </#if>
 }

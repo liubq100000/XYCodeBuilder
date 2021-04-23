@@ -69,6 +69,12 @@ codeAssemblyFun.initPage = function () {
     codeAssemblyFun.initQueryPage();
     codeAssemblyFun.initListPage();
     codeAssemblyFun.initFormPage();
+    //初始化目录
+    var selectTableNowValue = $("#selectTableNowValue").val().toLowerCase();
+    selectTableNowValue = selectTableNowValue.replaceAll("_", ".");
+    selectTableNowValue = selectTableNowValue.replaceAll("-", ".");
+    $("#selectTableBaseDir").val("com.yx.modular." + selectTableNowValue);
+
 }
 //查询区域选择
 codeAssemblyFun.initQueryPage = function () {
@@ -159,7 +165,8 @@ codeAssemblyFun.initListPage = function () {
             || item.camelName.indexOf("ext") >= 0
             || item.camelName.indexOf("create") >= 0
             || item.camelName.indexOf("modify") >= 0
-            || item.camelName.indexOf("delete") >= 0) {
+            || item.camelName.indexOf("delete") >= 0
+            || item.camelName.indexOf("update") >= 0) {
             h += "<select id='list_display_" + item.camelName + "' name='list_display_" + item.camelName + "' style='width:100%;'>";
             h += "<option value='N'>否</option>";
             h += "<option value='Y'>是</option>";
@@ -197,8 +204,6 @@ codeAssemblyFun.initFormPage = function () {
     h += "<td style='width:150px;' align='center'>名称</td>";
     h += "<td style='width:150px;' align='center'>类型</td>";
     h += "<td style='width:150px;' align='center'><span style='color:#F00;font-weight: bold'>表单显示</span></td>";
-    // h += "<td style='width:150px;' align='center'>列宽</td>";
-    // h += "<td style='width:150px;' align='center'>列高</td>";
     h += "<td style='width:150px;' align='center'>显示类型</td>";
     h += "<td style='width:150px;' align='center'>字典编码</td>";
     h += "<td style='width:150px;' align='center'>父字典编码</td>";
@@ -222,7 +227,8 @@ codeAssemblyFun.initFormPage = function () {
             || item.camelName.indexOf("ext") >= 0
             || item.camelName.indexOf("create") >= 0
             || item.camelName.indexOf("modify") >= 0
-            || item.camelName.indexOf("delete") >= 0) {
+            || item.camelName.indexOf("delete") >= 0
+            || item.camelName.indexOf("update") >= 0) {
             h += "<select id='form_display_" + item.camelName + "' name='form_display_" + item.camelName + "' style='width:100%;'>";
             h += "<option value='N'>否</option>";
             h += "<option value='Y'>是</option>";
@@ -318,7 +324,7 @@ codeAssemblyFun.save = function () {
         };
         formData[formData.length] = itemData;
     })
-    if(!isDicOk){
+    if (!isDicOk) {
         layer.alert("请在表单输入字典编码信息");
         return;
     }
@@ -391,7 +397,7 @@ codeAssemblyFun.save = function () {
         url: "/code/build?n_=" + (new Date().getTime()),
         success: function (data) {
 
-            layer.confirm('生成成功,是否下载', function(){
+            layer.confirm('生成成功,是否下载', function () {
                 window.location.href = "/code/down";
             });
         }

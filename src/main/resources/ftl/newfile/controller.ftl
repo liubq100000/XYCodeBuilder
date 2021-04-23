@@ -33,11 +33,8 @@ public class ${className}Controller extends BaseController {
 	private I${className}Service ${className2}Service;
 
 	/**
-	* 跳转到主页面
-	*
-	* @author
-	* @Date 2020-09-07
-	*/
+	 * 跳转到主页面
+	 */
 	@RequestMapping("/manage")
 	public String index() {
 		return PREFIX + "/${className2}.html";
@@ -45,9 +42,6 @@ public class ${className}Controller extends BaseController {
 
 	/**
 	 * 新增页面
-	 *
-	 * @author
-	 * @Date 2020-09-07
 	 */
 	@RequestMapping("/add")
 	public String add() {
@@ -56,9 +50,6 @@ public class ${className}Controller extends BaseController {
 
 	/**
 	 * 编辑页面
-	 *
-	 * @author
-	 * @Date 2020-09-07
 	 */
 	@RequestMapping("/edit")
 	public String edit() {
@@ -67,9 +58,6 @@ public class ${className}Controller extends BaseController {
 
 	/**
 	 * 新增接口
-	 *
-	 * @author
-	 * @Date 2020-09-07
 	 */
 	@RequestMapping("/addItem")
 	@ResponseBody
@@ -85,9 +73,6 @@ public class ${className}Controller extends BaseController {
 
 	/**
 	 * 编辑接口
-	 *
-	 * @author
-	 * @Date 2020-09-07
 	 */
 	@RequestMapping("/editItem")
 	@ResponseBody
@@ -103,9 +88,6 @@ public class ${className}Controller extends BaseController {
 
 	/**
 	 * 删除接口
-	 *
-	 * @author
-	 * @Date 2020-09-07
 	 */
 	@RequestMapping("/delete")
 	@ResponseBody
@@ -121,22 +103,16 @@ public class ${className}Controller extends BaseController {
 
 	/**
 	 * 查看详情接口
-	 *
-	 * @author
-	 * @Date 2020-09-07
 	 */
 	@RequestMapping("/detail")
 	@ResponseBody
 	public ResponseData detail(${className}Bean param) {
-		${className} detail = this.${className2}Service.getById(param.getId());
+		${className}Bean detail = this.${className2}Service.findBySpec(param);
 		return ResponseData.success(detail);
 	}
 
 	/**
 	 * 查询列表
-	 *
-	 * @author
-	 * @Date 2020-09-07
 	 */
 	@ResponseBody
 	@RequestMapping("/list")
