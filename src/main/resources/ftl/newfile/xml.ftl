@@ -49,14 +49,14 @@
 		</where>
 	</sql>
 
-	<select id="customList" resultType="${basePackage}.model.${className}Bean" parameterType="${basePackage}.model.${className}Bean">
+	<select id="queryList" resultType="${basePackage}.model.${className}Bean" parameterType="${basePackage}.model.${className}Bean">
 		select
 		<include refid="Base_Column_List"/>
 		from ${tableName} t
 		<include refid="Base_Query_Where"/>
 	</select>
 
-	<select id="customPageList" resultType="${basePackage}.model.${className}Bean" parameterType="${basePackage}.model.${className}Bean">
+	<select id="queryPageList" resultType="${basePackage}.model.${className}Bean" parameterType="${basePackage}.model.${className}Bean">
 		select
 		<include refid="Base_Column_List"/>
 		from ${tableName} t

@@ -16,8 +16,8 @@ import java.util.Map;
  */
 public interface ${className}Mapper extends BaseMapper<${className}> {
 
-   List<${className}Bean> customList(@Param("paramCondition") ${className}Bean paramCondition);
+   List<${className}Bean> queryList(@Param("paramCondition") ${className}Bean paramCondition);
 
-   Page<${className}Bean> customPageList(@Param("page") Page page, @Param("paramCondition") ${className}Bean paramCondition);
+   Page<${className}Bean> queryPageList(@Param("page") Page page, @Param("paramCondition") ${className}Bean paramCondition);
 
 }

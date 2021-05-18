@@ -1,9 +1,11 @@
-layui.use(['table', 'admin', 'ax', 'func'], function () {
+layui.use(['table', 'admin', 'ax', 'func' , 'laydate', 'yx'], function () {
     var $ = layui.$;
     var table = layui.table;
     var $ax = layui.ax;
     var admin = layui.admin;
     var func = layui.func;
+    var laydate = layui.laydate;
+    var yx = layui.yx;
 
     //管理
     var ${className} = {
@@ -17,7 +19,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
             <#list listItemList as listItem>
             {field: '${listItem.name}', sort: false, title: '${listItem.label}'},
             </#list>
-            {align: 'center', toolbar: '#tableBar', title: '操作'}
+            {align: 'center', toolbar: '#tableBar', title: '操作', width:120,  fixed: 'right'}
         ]];
     };
 
@@ -28,6 +30,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
         if(condObj){
             queryData['name'] = condObj;
         }
+        queryData['n_'] = new Date().getTime();
         return queryData;
     };
 
@@ -87,7 +90,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
         url: Feng.ctxPath + '/${className2}/list',
         toolbar: '#toolbarDemo', //开启头部工具栏，并为其绑定左侧模板
         defaultToolbar: ['filter', {title: '导出', layEvent: 'EXPORT', icon: 'layui-icon-export'}, 'print'],
-        queryParams: ${className}.queryParams(),
+        queryParams: function(){return ${className}.queryParams()},
         page: true,
         limit:20,
         height: "full-98",
@@ -95,7 +98,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
         cols: ${className}.initColumn()
     });
     // 导出
-    table.on('toolbar(' + VehicleInformation.tableId + ')', function (obj) {
+    table.on('toolbar(' + ${className}.tableId + ')', function (obj) {
         if (obj.event === 'EXPORT') {
             xyexport.do(layui, tableResult, "信息");
         }
@@ -120,7 +123,7 @@ layui.use(['table', 'admin', 'ax', 'func'], function () {
         if (layEvent === 'edit') {
             ${className}.openEditDlg(data);
         } else if (layEvent === 'view') {
-            ${className}.openEditDlg(data);
+            ${className}.openViewDlg(data);
         } else if (layEvent === 'delete') {
             ${className}.onDeleteItem(data);
         }

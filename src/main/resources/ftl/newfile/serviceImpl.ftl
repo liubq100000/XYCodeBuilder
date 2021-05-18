@@ -46,7 +46,7 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
 
 	@Override
 	public ${className}Bean findBySpec(${className}Bean param) {
-		List<${className}Bean> list = baseMapper.customList(param);
+		List<${className}Bean> list = baseMapper.queryList(param);
 		if (list == null || list.size() == 0) {
 			return null;
 		}
@@ -62,7 +62,7 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
 		}
 		${className}Bean cond = new ${className}Bean();
 		cond.setHeadIdList(ids);
-		List<${className}Bean> list = baseMapper.customList(cond);
+		List<${className}Bean> list = baseMapper.queryList(cond);
 		if (list == null || list.size() == 0) {
 			return new ArrayList<>();
 		}
@@ -95,13 +95,13 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Mapper, ${c
 
 	@Override
 	public List<${className}Bean> findListBySpec(${className}Bean param) {
-		return baseMapper.customList(param);
+		return baseMapper.queryList(param);
 	}
 
 	@Override
 	public LayuiPageInfo findPageBySpec(${className}Bean param) {
 		Page pageContext = getPageContext();
-		IPage page = this.baseMapper.customPageList(pageContext, param);
+		IPage page = this.baseMapper.queryPageList(pageContext, param);
 		return LayuiPageFactory.createPageInfo(page);
 	}
 

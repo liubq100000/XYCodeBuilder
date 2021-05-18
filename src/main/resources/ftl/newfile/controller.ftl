@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
 * 控制器
 *
-* @author
+* @author liubq
 * @Date 2020-09-07 10:25:00
 */
 @Controller
@@ -36,7 +36,7 @@ public class ${className}Controller extends BaseController {
 	 * 跳转到主页面
 	 */
 	@RequestMapping("/manage")
-	public String index() {
+	public String manage() {
 		return PREFIX + "/${className2}.html";
 	}
 

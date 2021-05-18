@@ -5,18 +5,18 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.alibaba.fastjson.annotation.JSONField;
-import com.yx.base.bean.BaseBean;
 import java.util.Date;
 import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
 /**
+ * 属性
  * @author liubq
  * @version 2020-07-10
  */
 @TableName("${tableName}")
 @Data
-public class ${className} extends BaseBean implements Serializable {
+public class ${className} implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class ${className} extends BaseBean implements Serializable {
 	<#else>
 	//${attr.label}
 	<#if attr.typeName?contains("Date")>
-	@JSONField(format = "yyyy-MM-dd")
+	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	</#if>
 	@TableField("${attr.columnName}")
 	private ${attr.type} ${attr.camelName};

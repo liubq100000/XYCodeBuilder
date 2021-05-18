@@ -32,7 +32,7 @@
 
 <script type="text/html" id="tableBar">
 	<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="view">查看</a>
-	<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+	<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
 </script>
 @}

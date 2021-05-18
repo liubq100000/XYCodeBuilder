@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 
 /**
+ * 服务
  * @Version 1.0
  */
 public interface I${className}Service extends IService<${className}>{
